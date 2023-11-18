@@ -17,6 +17,7 @@ namespace Application.Features.ContentManagement.Command.UpdateContentManagment
         {
             profile.CreateMap<UpdateContentManagmentCommand, ContentSetting>();
         }
+        public long Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string ArabicContent { get; set; }

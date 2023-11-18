@@ -15,6 +15,6 @@ public class ContentSetting : Entity
 	public string Twitter { get; set; }
 	public string Snapchat { get; set; }
     public File Image { get; set; }
-    public long ImageId { get; set; }
+    public long? ImageId { get; set; }
 
 }

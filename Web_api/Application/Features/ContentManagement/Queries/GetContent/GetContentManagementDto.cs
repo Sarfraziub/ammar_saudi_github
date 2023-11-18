@@ -10,6 +10,7 @@ namespace Application.Features.ContentManagement.Queries.GetContentManagment
         {
             profile.CreateMap<ContentSetting, GetContentManagementDto>();
         }
+        public long Id { get; set; }
         public string Key { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
@@ -22,6 +23,9 @@ namespace Application.Features.ContentManagement.Queries.GetContentManagment
         public string Instagram { get; set; }
         public string Twitter { get; set; }
         public string Snapchat { get; set; }
-        
+        public long? ImageId { get; set; }
+        public string ImageUrl { get; set; }
+        public Domain.DbModel.File Image { get; set; }
+
     }
 }

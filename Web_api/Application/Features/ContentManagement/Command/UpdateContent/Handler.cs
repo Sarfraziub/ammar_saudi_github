@@ -1,7 +1,9 @@
 ﻿using Application.Features.Common.Interfaces;
 using Application.Features.ContentManagement.Command.UpdateContentManagment;
+using Application.Features.ContentManagement.Queries.GetContentManagment;
 using Application.Features.ContentSettings.Commands.UpdateContentSettings;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain.DbModel;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -26,21 +28,13 @@ namespace Application.Features.ContentManagement.Command.UpdateContent
 
         public async Task<Unit> Handle(UpdateContentManagmentCommand request, CancellationToken cancellationToken)
         {
-            var contentSettings = await _context.ContentSettings
-                .Take(1).SingleOrDefaultAsync(c => c.Active == 1)!;
-            if (contentSettings == null)
-            {
-                var entity = _mapper.Map<ContentSetting>(request);
-                _context.ContentSettings.Add(entity);
-                await _context.SaveChangesAsync(cancellationToken);
-            }
-            else
+            var contentSettings = await _context.ContentSettings.FindAsync(request.Id);
+            if (contentSettings != null)
             {
                 contentSettings.Content = request.Content;
                 contentSettings.ArabicContent = request.ArabicContent;
                 contentSettings.ImageId = request.ImageId;
                 await _context.SaveChangesAsync(cancellationToken);
-
             }
             return Unit.Value;
         }
