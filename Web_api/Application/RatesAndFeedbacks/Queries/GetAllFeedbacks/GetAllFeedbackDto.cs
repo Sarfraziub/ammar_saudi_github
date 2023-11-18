@@ -26,6 +26,7 @@ public class GetAllFeedbackDto : IMapFrom<ClientOrder>
     public decimal? PromoCodePercentage { get; set; }
     public string UserName  { get; set; }
     public string? PhoneNumber  { get; set; }
+    public bool? FlgSelected { get; set; }
 
 
     public void Mapping(Profile profile)

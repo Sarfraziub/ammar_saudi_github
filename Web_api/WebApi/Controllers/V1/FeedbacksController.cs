@@ -1,4 +1,5 @@
 using Application.RatesAndFeedbacks.Commands.ShowHideFeedback;
+using Application.RatesAndFeedbacks.Commands.UpdateFlagSelected;
 using Application.RatesAndFeedbacks.Queries.GetActiveFeedbacks;
 using Application.RatesAndFeedbacks.Queries.GetAllFeedbacks;
 using Microsoft.AspNetCore.Authorization;
@@ -27,6 +28,14 @@ public class FeedbacksController : BaseController
 	[HttpPut]
 	[Authorize(Roles = "Admin")]
 	public async Task<ActionResult> ShowHideFeedback([FromBody] ShowHideFeedbackCommand command)
+	{
+		if (!ModelState.IsValid) return BadRequest(ModelState.Values.Select(e => e.Errors).ToList());
+		await Mediator.Send(command).ConfigureAwait(false);
+		return NoContent();
+	}	  
+	[HttpPut]
+	[Authorize(Roles = "Admin")]
+	public async Task<ActionResult> UpdateFlagSelected([FromBody] UpdateFlagCommand command)
 	{
 		if (!ModelState.IsValid) return BadRequest(ModelState.Values.Select(e => e.Errors).ToList());
 		await Mediator.Send(command).ConfigureAwait(false);

@@ -35,7 +35,7 @@ public class ClientOrder : Entity, IMultiCurrency
     public decimal ChargedPrice { get; set; }
     public decimal ExchangeRate { get; set; }
     public DateTime? DriverAssignedOn { get; set; }
-
+    public bool? FlgSelected { get; set; }
     public PromotionalLink PromotionalLink { get; set; }
     public ICollection<ClientOrderPayment> ClientOrderPayments { get; set; }
     public ICollection<ClientOrderDeliverImage> ClientOrderDeliverImages { get; set; }
