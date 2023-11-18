@@ -1,0 +1,12 @@
+<div>
+    <label>Enter address</label>
+    <input type="text" class="form-control my-search-box" (keydown.enter)="$event.preventDefault()" placeholder="Search Location"
+        type="text" #search />
+</div>
+
+<!-- <google-map #myGoogleMap height="500px" width="100%" (mapDblclick)="eventHandler($event,'mapDblclick')" [zoom]="zoom"
+    [center]="center" [options]="options">
+    <map-marker #markerElem *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label"
+        [title]="marker.title" [options]="marker.options" (mapClick)="openInfo($event, marker)">
+    </map-marker>
+</google-map> -->

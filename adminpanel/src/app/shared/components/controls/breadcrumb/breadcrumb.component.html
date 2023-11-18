@@ -1,0 +1,9 @@
+<ol class="breadcrumb page-breadcrumb m-0 px-0 pt-3" *ngIf="breadcrumbs?.length > 0">
+  <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item" [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+    <a *ngIf="breadcrumb?.isBase" href="javascript:void(0);">
+      <i [class]="breadcrumb?.rootIcon" class="mr-1"></i>
+      {{breadcrumb['label']}}
+  </a>
+    <span class="c-pointer" *ngIf="!breadcrumb?.isBase">{{breadcrumb['label']}}</span>
+  </li>
+</ol>

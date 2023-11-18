@@ -1,0 +1,114 @@
+<form id="item-management-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- modal alert -->
+    <div class="modal fade " id="item-management-edit-view-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تفاصيل المادة</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="package-type">الباقة</label>
+                                <ng-select2 [options]="options" id="package-type" dropdownParent="package-type"
+                                    [class.is-invalid]="!packageId.valid && packageId.touched"
+                                    placeholder="اختر الباقة" [data]="packages" formControlName="packageId">
+                                </ng-select2>
+                                <div *ngIf="!packageId?.valid && packageId?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="item-item-name">الاسم</label>
+                                <input formControlName="name" (keypress)="englishOnly($event)"
+                                    [class.is-invalid]="!name.valid && name.touched" id="item-item-name"
+                                    name="item-item-name" type="text" class="form-control text-right"
+                                    placeholder="الاسم" />
+                                <div *ngIf="!name?.valid && name?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="item-item-arabic-name">الاسم بالعربي</label>
+                                <input formControlName="arabicName"
+                                    [class.is-invalid]="!arabicName.valid && arabicName.touched"
+                                    id="item-item-arabic-name" name="item-item-arabic-name" type="text"
+                                    class="form-control" placeholder="الاسم بالعربي" />
+                                <div *ngIf="!arabicName?.valid && arabicName?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="item-item-specifications">الوصف</label>
+                                <input formControlName="specifications" (keypress)="englishOnly($event)"
+                                    [class.is-invalid]="!specifications.valid && specifications.touched"
+                                    id="item-item-specifications" name="item-item-specifications" type="text"
+                                    class="form-control text-right" placeholder="الوصف" />
+                                <div *ngIf="!specifications?.valid && specifications?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="item-item-arabic-specifications">الوصف بالعربي</label>
+                                <input formControlName="arabicSpecifications"
+                                    [class.is-invalid]="!arabicSpecifications.valid && arabicSpecifications.touched"
+                                    id="item-item-arabic-specifications" name="item-item-arabic-specifications"
+                                    type="text" class="form-control" placeholder="الوصف بالعربي" />
+                                <div *ngIf="!arabicSpecifications?.valid && arabicSpecifications?.touched"
+                                    class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="item-price">السعر</label>
+                                <input formControlName="price" [class.is-invalid]="!price.valid && price.touched"
+                                    id="item-price" name="item-price" type="number" class="form-control"
+                                    placeholder="السعر" />
+                                <div *ngIf="!price?.valid && price?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img-square-wrapper">
+                        <div class="avatar-upload my-0">
+                            <div class="avatar-edit">
+                                <input type='file' (change)="onItemFileChange($event)" id="item-image"
+                                    accept=".png, .jpg, .jpeg" />
+                                <label for="item-image"></label>
+                            </div>
+                            <div class="avatar-preview rounded">
+                                <img *ngIf="itemImage" class="img-fluid img-thumbnail rounded" [src]="itemImage">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" data-content="remove" class="btn btn-default"
+                        data-dismiss="modal">الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

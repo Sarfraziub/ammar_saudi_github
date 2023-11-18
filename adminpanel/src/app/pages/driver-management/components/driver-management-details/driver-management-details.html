@@ -1,0 +1,147 @@
+<form id="driver-management-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- modal alert -->
+    <div class="modal fade " id="driver-management-edit-view-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تفاصيل السائق</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="driver-name"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            الاسم</label>
+                        <div class="col-lg-9">
+                            <input formControlName="name" [class.is-invalid]="!name.valid && name.touched"
+                                id="driver-name" name="driver-name" type="text" class="form-control"
+                                placeholder="الاسم" />
+                            <div *ngIf="!name?.valid && name?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="driver-phone-number"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            رقم الجوال</label>
+                        <div class="col-lg-9">
+                            <input formControlName="phoneNumber"
+                                [class.is-invalid]="!phoneNumber.valid && phoneNumber.touched" id="driver-phone-number"
+                                name="driver-phone-number" type="text" class="form-control" placeholder="رقم الجوال" />
+                            <div *ngIf="!phoneNumber?.valid && phoneNumber?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="driver-email"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            البريد الالكتروني</label>
+                        <div class="col-lg-9">
+                            <input formControlName="email" [class.is-invalid]="!email.valid && email.touched"
+                                id="driver-email" name="driver-email" type="email" class="form-control"
+                                placeholder="البريد الالكتروني" />
+                            <div *ngIf="!email?.valid && email?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="driver-national-id"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            رقم الوثيقة</label>
+                        <div class="col-lg-9">
+                            <input formControlName="nationalId"
+                                [class.is-invalid]="!nationalId.valid && nationalId.touched" id="driver-national-id"
+                                name="driver-national-id" type="text" class="form-control" placeholder="رقم الوثيقة" />
+                            <div *ngIf="!nationalId?.valid && nationalId?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="driver-bank-name"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            البنك</label>
+                        <div class="col-lg-9">
+                            <input formControlName="bankName" [class.is-invalid]="!bankName.valid && bankName.touched"
+                                id="driver-bank-name" name="driver-bank-name" type="text" class="form-control"
+                                placeholder="البنك" />
+                            <div *ngIf="!bankName?.valid && bankName?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="driver-iban"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            رقم حساب الآيبان</label>
+                        <div class="col-lg-9">
+                            <input formControlName="iban" [class.is-invalid]="!iban.valid && iban.touched"
+                                id="driver-iban" name="driver-iban" type="text" class="form-control"
+                                placeholder="رقم حساب الآيبان" />
+                            <div *ngIf="!iban?.valid && iban?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="driver-bank-name"
+                            class="col-lg-4 col-form-label form-label fw-700 text-left text-lg-left">
+                            صورة عن الوثيقة</label>
+                        <div class="col-lg-8">
+                            <div class="img-square-wrapper">
+                                <div class="avatar-upload my-0">
+                                    <div class="avatar-edit">
+                                        <input type='file' (change)="onNationalImageFileChange($event)"
+                                            id="national-image" accept=".png, .jpg, .jpeg" />
+                                        <label for="national-image">
+                                        </label>
+                                    </div>
+                                    <div class="avatar-preview rounded">
+                                        <img *ngIf="nationalImage" class="img-fluid img-thumbnail rounded"
+                                            [src]="nationalImage">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="driver-bank-name"
+                            class="col-lg-4 col-form-label form-label fw-700 text-left text-lg-left">
+                            صورة عن رقم حساب الآيبان
+                        </label>
+                        <div class="col-lg-8">
+                            <div class="img-square-wrapper">
+                                <div class="avatar-upload my-0">
+                                    <div class="avatar-edit">
+                                        <input type='file' (change)="onIbanFileChange($event)" id="iban-image"
+                                            accept=".png, .jpg, .jpeg" />
+                                        <label for="iban-image"></label>
+                                    </div>
+                                    <div class="avatar-preview rounded">
+                                        <img *ngIf="ibanImage" class="img-fluid img-thumbnail rounded"
+                                            [src]="ibanImage">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" class="btn btn-default" data-dismiss="modal">الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

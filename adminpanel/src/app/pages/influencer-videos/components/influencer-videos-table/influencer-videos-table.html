@@ -1,0 +1,80 @@
+<data-table id="influencer-videos" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRowSelect)="onRowSelect($event)" (onDeleteRow)="onDeleteRow()"
+    (onEditRow)="onEditRow($event)" (onAddRow)="onAddRow()" (onRefreshData)="get()">
+    <column property="title" header="العنوان" [filter]="true" [sortable]="true">
+    </column>
+    <column property="content" header="المحتوى" [filter]="true" [sortable]="true">
+    </column>
+    <column property="contentType" header="حالة المحتوى" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+            <div class="row mx-0 text-center">
+                <div class="col">
+                    <i class="fal fal fa-times text-danger" *ngIf="item.visible === false"></i>
+                    <i class="fal fal fa-check text-success" *ngIf="item.visible === true"></i>
+                </div>
+
+            </div>
+        </ng-template>
+    </column>
+    <column [property]="'visible'" [header]="'Controls'" [hideOnPrint]="true">
+        <ng-template #dataTableHeader let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" (click)="onViewGellary()"
+                    class="btn btn-outline-success btn-sm btn-icon waves-effect waves-themed">
+                    <i class="fal fa-images"></i>
+                </a>
+            </div>
+        </ng-template>
+        <ng-template #dataTableCell let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" (click)="onViewGellary(item)" title="مشاهدة الصورة"
+                    class="btn btn-sm btn-icon btn-outline-primary shadow-0">
+                    <i class="fal fa-image"></i></a>
+            </div>
+        </ng-template>
+    </column>
+</data-table>
+
+
+<a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#influencer-videos-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<influencer-videos-details-cmp [selectedItem]="selectedItem" (onSave)="get();"></influencer-videos-details-cmp>
+
+<ng-container *ngIf="viewGallery">
+    <gallery #gallery (onClose)="onClose()"></gallery>
+</ng-container>
+
+
+<a #videoModal href="javascript:void(0);" data-toggle="modal" data-target="#video-modal" class="d-none">
+</a>
+
+
+
+<!-- modal alert -->
+<div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-transparent">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                            class="fal fa-times"></i></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-content">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video [src]="selectedItem?.src" height="300" controls></video>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

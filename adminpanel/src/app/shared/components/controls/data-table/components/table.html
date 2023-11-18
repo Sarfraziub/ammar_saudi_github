@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col d-flex align-items-center justify-content-end">
+    <button *ngIf="allowRefresh" class="btn btn-primary btn-sm m-1" (click)="onToggleRefresh()" tabindex="0"
+      type="button">
+      <span><i class="fal fa-sync"></i></span>
+    </button>
+    <button class="btn btn-primary btn-sm m-1" *ngIf="allowEdit" class="btn btn-primary btn-sm m-1"
+      (click)="onToggleEdit()" [disabled]="!selectedId" tabindex="0" type="button">
+      <span><i class="fal fa-edit"></i></span>
+    </button>
+    <button *ngIf="allowAdd" class="btn btn-success btn-sm m-1" (click)="onToggleAdd()" tabindex="0" type="button">
+      <span><i class="fal fa-plus"></i></span>
+    </button>
+    <button *ngIf="allowDelete" class="btn btn-danger btn-sm m-1" (click)="onToggleDelete()" tabindex="0" type="button"
+      [disabled]="!selectedId">
+      <span><i class="fal fa-times"></i></span>
+    </button>
+    <button class="btn btn-outline-primary btn-sm m-1" [class.disabled]="items.length > 0" (click)="onTogglePrint()"
+      tabindex="0" type="button" title="Print">
+      <span><i class="fal fa-print"></i></span>
+    </button>
+  </div>
+</div>
+<div class="table-responsive-sm">
+  <table class="table data-table dataTable" [class.table-sm]="smallTable" [class]="className"
+    [class.table-light]="tableDark">
+    <thead>
+      <tr>
+        <th [style.width.px]="20" *ngIf="collapse" class="d-print-none"></th>
+        <th *ngIf="indexColumnVisible" class="index-column-header">
+          <span [textContent]="indexColumnHeader"></span>
+        </th>
+        <th rowspan="2" [style.width.px]="30" *ngIf="selectColumnVisible"
+          class="select-column-header position-relative p-0">
+          <div>
+            <input *ngIf="multiSelect" type="checkbox" [(ngModel)]="selectAllCheckbox" />
+          </div>
+        </th>
+        <th rowspan="2" [style.width.px]="30" *ngIf="selectOnRowClick"
+          class="select-column-header position-relative p-0">
+        </th>
+        <th *ngFor="let column of columns" [class.d-print-none]="column.hideOnPrint" #th [hide]="!column.visible"
+          (click)="headerClicked(column, $event)" [class.sortable]="column.sortable" [class.c-pointer]="column.sortable"
+          [class.resizable]="column.resizable" [ngClass]="column.styleClassObject" class="column-header">
+          <span *ngIf="!column.headerTemplate" [textContent]="column.header"></span>
+          <span *ngIf="column.headerTemplate" [ngTemplateOutlet]="column.headerTemplate"
+            [ngTemplateOutletContext]="{ column: column }"></span>
+          <span class="column-sort-icon float-right d-print-none d-none d-lg-block" *ngIf="column.sortable">
+            <i *ngIf="column.property !== sortBy" class="fal fa-long-arrow-down opacity-50"></i>
+            <i *ngIf="column.property !== sortBy" class="fal fa-long-arrow-up opacity-50"></i>
+            <span *ngIf="column.property === sortBy">
+              <i class="fal fa-long-arrow-down" [ngClass]="{'opacity-50': !sortAsc}"></i>
+              <i class="fal fa-long-arrow-up" [ngClass]="{'opacity-50': sortAsc}"></i>
+            </span>
+          </span>
+          <span *ngIf="column.resizable" class="column-resize-handle"
+            (mousedown)="resizeColumnStart($event, column, th)"></span>
+        </th>
+      </tr>
+      <tr *ngIf="filter" class="d-print-none">
+        <ng-container *ngIf="!lazy">
+          <th [style.width.px]="20" *ngIf="collapse" class="d-print-none"></th>
+          <th *ngFor="let column of columns" #th [class.d-none]="!column.filter && !filter" [hide]="!column.visible">
+            <input type="text" class="form-control" [placeholder]="column.header + '...' "
+              (input)="onFilter($event, column)" *ngIf="column.filter" />
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <ng-container *ngIf="items.length === 0">
+      <td class="h-200" [colSpan]="columnCount">
+        <div class="d-flex justify-content-center align-items-center">
+          <h1 class="text-danger mb-0">
+            No Data Available
+          </h1>
+        </div>
+      </td>
+    </ng-container>
+
+    <tfoot *ngIf="footerTemplate">
+      <tr>
+        <td class="py-2" [colSpan]="columnCount">
+          <ng-container *ngIf="footerTemplate" [ngTemplateOutlet]="footerTemplate">
+            <div [ngTemplateOutletContext]="footerTemplate"></div>
+          </ng-container>
+        </td>
+      </tr>
+    </tfoot>
+    <ng-container *ngIf="items.length > 0">
+      <tbody>
+        <tr *ngFor="let item of items; let index = index" (click)="onToggleRow(item, index)"
+          [class.selected]="selectedId === index + 1" dataTableRow #row [item]="item" [index]="index">
+        </tr>
+      </tbody>
+    </ng-container>
+  </table>
+  <div class="loading-cover" *ngIf="showReloading && reloading"></div>
+  <data-table-pagination #paginationCmp *ngIf="pagination" class="d-print-none"></data-table-pagination>
+</div>

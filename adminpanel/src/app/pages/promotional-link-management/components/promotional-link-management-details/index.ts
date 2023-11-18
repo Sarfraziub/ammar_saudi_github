@@ -1,0 +1,1 @@
+export * from './promotional-link-management-details.component'

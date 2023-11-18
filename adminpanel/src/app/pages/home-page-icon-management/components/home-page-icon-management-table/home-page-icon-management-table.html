@@ -1,0 +1,55 @@
+<data-table id="home-page-icon-management" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRowSelect)="onRowSelect($event)" [allowDelete]="false"
+    (onEditRow)="onEditRow($event)" [allowAdd]="false" (onRefreshData)="get()">
+    <column property="title" header="العنوان" [filter]="true" [sortable]="true">
+    </column>
+    <column property="arabicTitle" header="العنوان بالعربي" [filter]="true" [sortable]="true">
+    </column>
+    <column property="visible" header="الحالة" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+            <div class="row mx-0 text-center">
+                <div class="col">
+                    <i class="fal fal fa-times text-danger" *ngIf="item.visible === false"></i>
+                    <i class="fal fal fa-check text-success" *ngIf="item.visible === true"></i>
+                </div>
+
+            </div>
+        </ng-template>
+    </column>
+    <!-- <column [property]="'visible'" [header]="'Controls'" [hideOnPrint]="true">
+        <ng-template #dataTableHeader let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" (click)="onViewGellary()"
+                    class="btn btn-outline-success btn-sm btn-icon waves-effect waves-themed">
+                    <i class="fal fa-images"></i>
+                </a>
+            </div>
+        </ng-template>
+        <ng-template #dataTableCell let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" (click)="onViewGellary(item)" title="مشاهدة الصورة"
+                    class="btn btn-sm btn-icon btn-outline-primary shadow-0">
+                    <i class="fal fa-image"></i></a>
+            </div>
+        </ng-template>
+    </column> -->
+</data-table>
+
+
+<a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#home-page-icon-management-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<home-page-icon-management-details-cmp [selectedItem]="selectedItem"
+    (onSave)="get();"></home-page-icon-management-details-cmp>
+
+<ng-container *ngIf="viewGallery">
+    <gallery #gallery (onClose)="onClose()"></gallery>
+</ng-container>

@@ -1,0 +1,161 @@
+<div class="row no-gutters align-items-center py-1">
+    <div class="col mx-2 mb-3">
+        <div class="frame-wrap">
+            <label for="driver-fee-type" class="d-block mb-2 form-label fw-700">
+                البحث عن</label>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="filter-all" (input)="onHandleFilter(1)"
+                    [(ngModel)]="filterType" [value]="1">
+                <label class="custom-control-label" for="filter-all">الطلبات المدفوعة</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="filter-location" (input)="onHandleFilter(2)"
+                    [(ngModel)]="filterType" [value]="2">
+                <label class="custom-control-label" for="filter-location">بحاجة الى تحديد موقع</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="filter-driver" (input)="onHandleFilter(3)"
+                    [(ngModel)]="filterType" [value]="3">
+                <label class="custom-control-label" for="filter-driver">بحاجة الى سائق</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="filter-new" (input)="onHandleFilter(4)"
+                    [(ngModel)]="filterType" [value]="4">
+                <label class="custom-control-label" for="filter-new">جديد</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<data-table id="order-management" [items]="items" [itemCount]="items?.length" [className]="'table-bordered table-hover'"
+    [allowDelete]="false" [allowEdit]="false" [allowAdd]="false" [allowRefresh]="false">
+    <column property="number" header="#" [filter]="true" [sortable]="true">
+    </column>
+    <column property="clientOrderStatusName" header="حالة الطلب" [filter]="true" [sortable]="true">
+    </column>
+    <column property="client" header="اسم العميل" [filter]="true" [sortable]="true">
+    </column>
+    <column property="locationArabicName" header="الموقع" [filter]="true" [sortable]="true">
+    </column>
+    <column property="driver" header="اسم السائق" [filter]="true" [sortable]="true">
+    </column>
+    <column property="paymentDate" header="تاريخ الدفع" [filter]="true" [sortable]="true">
+    </column>
+    <column property="deliveryTime" header="موعد التسليم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="cost" header="المجموع" [filter]="true" [sortable]="true">
+    </column>
+    <column property="rate" header="التقييم" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+            <div class="row mx-0 text-center">
+                <div *ngIf="item.rate" class="col px-1">
+                    <star-rate [value]="item.rate"></star-rate>
+                </div>
+
+                <div *ngIf="!item.rate" class="col px-1">
+                    <span>لا يوجد تقييم</span>
+                </div>
+            </div>
+        </ng-template>
+    </column>
+    <column [property]="'active'" [header]="'Controls'">
+        <ng-template #dataTableHeader let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                الموقع
+            </div>
+        </ng-template>
+        <ng-template #dataTableCell let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" (click)="openMap(item)"
+                    class="btn text-danger btn-sm btn-icon waves-effect waves-themed mx-1">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </a>
+            </div>
+        </ng-template>
+    </column>
+    <column [property]="'active'" [header]="'Controls'">
+        <ng-template #dataTableHeader let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" (click)="get()"
+                    class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mx-1">
+                    <i class="fal fa-redo"></i>
+                </a>
+            </div>
+        </ng-template>
+        <ng-template #dataTableCell let-item="item">
+            <div class="d-flex justify-content-center align-items-center" *ngIf="item.clientOrderStatus !== 1">
+                <a href="javascript:void(0);" triggers="manual" #actionPopover="ngbPopover"
+                    (click)="actionPopover.open()" [ngbPopover]="actionContent" [popoverTitle]="actionTitle"
+                    class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mx-1">
+                    <i class="fal fa-align-center"></i>
+                </a>
+                <ng-template #actionTitle>
+                    <div class="row border-bottom">
+                        <div class="col">
+                            <div class="d-flex justify-content-center align-items-center pb-2">
+                                <h5 class="fw-500 width-sm m-0"> <i class="fal fa-exclamation-square mr-2"></i>
+                                    {{item.orderId}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template #actionContent>
+                    <ul class="list-group border p-0">
+                        <li *ngIf="!item.driver && item.allowAssignDriver && item.latitude !== 0 && item.longitude !== 0"
+                            class="list-group-item list-group-item-action c-pointer py-2" (click)="onSetDriver(item)">
+                            <span>تعيين سائق</span>
+                        </li>
+                        <li *ngIf="item.clientOrderStatus !== 4 && item.driver && item.latitude !== 0 && item.longitude !== 0"
+                            class="list-group-item list-group-item-action c-pointer py-2" (click)="onUnassignDriverForClientOrder(item)">
+                            <span>ازالة السائق</span>
+                        </li>
+                        <li *ngIf="item.allowAssignLocation"
+                            class="list-group-item list-group-item-action c-pointer py-2" (click)="onSetLocation(item)">
+                            <span>تعيين موقع</span>
+                        </li>
+                        <li class="list-group-item list-group-item-action c-pointer py-2"
+                            (click)="onViewFeedback(item)">
+                            <span>عرض التعليقات</span>
+                        </li>
+                        <li class="list-group-item list-group-item-action c-pointer py-2" (click)="onViewDetails(item)">
+                            <span>تفاصيل الطلب</span>
+                        </li>
+
+                        <li *ngIf="item.clientOrderStatus === 4"
+                            class="list-group-item list-group-item-action c-pointer py-2" (click)="onViewGellary(item)">
+                            <span>مشاهدة الصور</span>
+                        </li>
+
+
+                    </ul>
+                </ng-template>
+            </div>
+        </ng-template>
+    </column>
+</data-table>
+
+<a #setDriverModal href="javascript:void(0);" data-toggle="modal" data-target="#order-management-set-driver-modal"
+    class="d-none">
+</a>
+
+<order-management-set-driver-cmp [selectedItem]="selectedItem" (onSave)="get();"></order-management-set-driver-cmp>
+
+<a #viewFeedbackModal href="javascript:void(0);" data-toggle="modal" data-target="#order-management-view-feedback-modal"
+    class="d-none">
+</a>
+
+<order-management-view-feedback-cmp *ngIf="selectedItem !== null" [selectedItem]="selectedItem" (onSave)="get();">
+</order-management-view-feedback-cmp>
+
+
+<a #setLocationModal href="javascript:void(0);" data-toggle="modal" data-target="#order-management-set-location-modal"
+    class="d-none">
+</a>
+
+<order-management-set-location-cmp [selectedItem]="selectedItem" (onSave)="get();"></order-management-set-location-cmp>
+
+
+<ng-container *ngIf="viewGallery">
+    <gallery #gallery (onClose)="onClose()"></gallery>
+</ng-container>

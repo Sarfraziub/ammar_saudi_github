@@ -1,0 +1,63 @@
+<form id="admin-management-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- modal alert -->
+    <div class="modal fade " id="admin-management-edit-view-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تفاصيل المشرف</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <div class="form-group row">
+                        <label for="admin-name"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            الاسم</label>
+                        <div class="col-lg-9">
+                            <input formControlName="name" [class.is-invalid]="!name.valid && name.touched"
+                                id="admin-name" name="admin-name" type="text" class="form-control"
+                                placeholder="الاسم" />
+                            <div *ngIf="!name?.valid && name?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div> -->
+                    <div class="form-group row">
+                        <label for="admin-phone-number"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            رقم الجوال</label>
+                        <div class="col-lg-9">
+                            <input formControlName="phoneNumber" [class.is-invalid]="!phoneNumber.valid && phoneNumber.touched"
+                                id="admin-phone-number" name="admin-phone-number" type="text" class="form-control"
+                                placeholder="رقم الجوال" />
+                            <div *ngIf="!phoneNumber?.valid && phoneNumber?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <!-- <div class="form-group row">
+                        <label for="admin-email"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            البريد الالكتروني</label>
+                        <div class="col-lg-9">
+                            <input formControlName="email" [class.is-invalid]="!email.valid && email.touched"
+                                id="admin-email" name="admin-email" type="email" class="form-control"
+                                placeholder="البريد الالكتروني" />
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div> -->
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" data-content="remove"
+                        class="btn btn-default" data-dismiss="modal">الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

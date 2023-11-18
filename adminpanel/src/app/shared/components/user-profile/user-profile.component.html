@@ -1,0 +1,65 @@
+<form id="user-profile-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- modal alert -->
+    <div class="modal fade" id="user-profile-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">الملف الشخصي</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-square-wrapper">
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' (change)="onFileChange($event)" id="imageUpload"
+                                    accept=".png, .jpg, .jpeg" />
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <img class="img-fluid img-thumbnail" [src]="profileImage">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="user-profile-name"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            الاسم</label>
+                        <div class="col-lg-9">
+                            <input formControlName="name" [class.is-invalid]="!name.valid && name.touched"
+                                id="user-profile-name" name="user-profile-name" type="text" class="form-control"
+                                placeholder="الاسم" />
+                            <div *ngIf="!name?.valid && name?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="user-profile-email"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            البريد الالكتروني</label>
+                        <div class="col-lg-9">
+                            <input formControlName="email" [class.is-invalid]="!email.valid && email.touched"
+                                id="user-profile-email" name="user-profile-email" type="email" class="form-control"
+                                placeholder="البريد الالكتروني" />
+                            <div *ngIf="!email?.valid && email?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" data-content="remove" class="btn btn-default"
+                        data-dismiss="modal">
+                        الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

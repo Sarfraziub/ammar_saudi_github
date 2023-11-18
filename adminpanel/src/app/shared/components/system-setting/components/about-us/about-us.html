@@ -1,0 +1,30 @@
+<form id="about-us-group" [formGroup]="aboutUsForm">
+    <div class="form-group row">
+        <label for="about-us-content" class="col-lg-2 col-form-label form-label fw-700 text-left text-lg-left">
+            حول النظام</label>
+        <div class="col-lg-10">
+            <textarea formControlName="content" (keypress)="englishOnly($event)"
+                [class.is-invalid]="!content.valid && content.touched" id="about-us-content" name="about-us-content"
+                class="form-control text-right" placeholder="حول النظام"></textarea>
+            <div *ngIf="!content?.valid && content?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="form-group row">
+        <label for="about-us-arabic-content" class="col-lg-2 col-form-label form-label fw-700 text-left text-lg-left">
+            حول النظام عربي</label>
+        <div class="col-lg-10">
+            <textarea formControlName="arabicContent" [class.is-invalid]="!arabicContent.valid && arabicContent.touched"
+                id="about-us-arabic-content" name="about-us-arabic-content" class="form-control"
+                placeholder="حول النظام عربي"></textarea>
+            <div *ngIf="!arabicContent?.valid && arabicContent?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+</form>

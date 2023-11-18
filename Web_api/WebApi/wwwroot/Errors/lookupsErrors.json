@@ -1,0 +1,12 @@
+[
+  {
+    "Id": 1,
+    "Error": "This promo Code already exist",
+    "ArabicError": "الرمز الترويجي معرف مسبقا"
+  },
+  {
+    "Id": 2,
+    "Error": "Please define driver's fee",
+    "ArabicError": "يرجى تحديد رسوم السائق"
+  }
+]

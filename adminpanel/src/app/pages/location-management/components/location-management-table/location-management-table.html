@@ -1,0 +1,36 @@
+<data-table id="location-management" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRowSelect)="onRowSelect($event)" (onDeleteRow)="onDeleteRow()"
+    (onEditRow)="onEditRow($event)" (onAddRow)="onAddRow()" (onRefreshData)="get()">
+    <column property="name" header="الاسم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="arabicName" header="الاسم بالعربي" [filter]="true" [sortable]="true">
+    </column>
+    <column property="region" header="المنطقة" [filter]="true" [sortable]="true">
+    </column>
+    <column property="locationTypeTitle" header="النوع" [filter]="true" [sortable]="true">
+    </column>
+    <column property="moreNeeded" header="اكثر حاجة" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+            <div class="row mx-0 text-center">
+                <div class="col">
+                    <i class="fal fal fa-times text-danger" *ngIf="item.moreNeeded === false"></i>
+                    <i class="fal fal fa-check text-success" *ngIf="item.moreNeeded === true"></i>
+                </div>
+            </div>
+        </ng-template>
+    </column>
+</data-table>
+
+
+<a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#location-management-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<location-management-details-cmp [isEdit]="isEdit" [selectedItem]="selectedItem" (onSave)="get();"></location-management-details-cmp>

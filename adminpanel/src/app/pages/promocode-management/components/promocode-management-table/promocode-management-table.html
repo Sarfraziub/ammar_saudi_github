@@ -1,0 +1,24 @@
+<data-table id="promocode-management" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRowSelect)="onRowSelect($event)" (onDeleteRow)="onDeleteRow()"
+    (onEditRow)="onEditRow($event)" (onAddRow)="onAddRow()" (onRefreshData)="get()">
+    <column property="code" header="الرمز الترويجي" [filter]="true" [sortable]="true">
+    </column>
+    <column property="expiryDateFormat" header="تاريخ الانتهاء" [filter]="true" [sortable]="true">
+    </column>
+    <column property="percentage" header="نسبة الخصم" [filter]="true" [sortable]="true">
+    </column>
+</data-table>
+
+
+<a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#promocode-management-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<promocode-management-details-cmp [selectedItem]="selectedItem" (onSave)="get();"></promocode-management-details-cmp>

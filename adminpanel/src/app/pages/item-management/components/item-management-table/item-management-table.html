@@ -1,0 +1,30 @@
+<data-table id="item-management" [items]="items" [itemCount]="items?.length" [className]="'table-bordered table-hover'"
+    (onRowSelect)="onRowSelect($event)" (onDeleteRow)="onDeleteRow()" (onEditRow)="onEditRow($event)"
+    (onAddRow)="onAddRow()" (onRefreshData)="get()">
+    <column property="name" header="الاسم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="arabicName" header="الاسم بالعربي" [filter]="true" [sortable]="true">
+    </column>
+    <column property="specifications" header="الوصف" [filter]="true" [sortable]="true">
+    </column>
+    <column property="arabicSpecifications" header="الوصف بالعربي" [filter]="true" [sortable]="true">
+    </column>
+    <column property="packageArabicName" header="الباقة" [filter]="true" [sortable]="true">
+    </column>
+    <column property="price" header="السعر" [sortable]="true" [filter]="true">
+    </column>
+</data-table>
+
+
+<a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#item-management-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<item-management-details-cmp [selectedItem]="selectedItem" (onSave)="get();"></item-management-details-cmp>

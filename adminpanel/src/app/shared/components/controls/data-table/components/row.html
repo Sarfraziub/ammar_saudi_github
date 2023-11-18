@@ -1,0 +1,9 @@
+<td *ngFor="let column of dataTable.columns" [class.d-print-none]="column.hideOnPrint" [class.d-none]="!column.visible">
+
+  <ng-container *ngIf="!column.cellTemplate">
+    {{item[column.property]}}
+  </ng-container>
+
+  <div *ngIf="column.cellTemplate" [ngTemplateOutlet]="column.cellTemplate"
+    [ngTemplateOutletContext]="{ column: column, row: _this, item: item }"></div>
+</td>

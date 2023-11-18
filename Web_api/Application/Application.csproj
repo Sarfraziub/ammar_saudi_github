@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<Configurations>Debug;Release;Stage</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Employee\**" />
+		<EmbeddedResource Remove="Employee\**" />
+		<None Remove="Employee\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+		<PackageReference Include="ByteSize" Version="2.1.1" />
+		<PackageReference Include="FluentValidation" Version="10.3.4" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="PasswordGenerator" Version="2.1.0" />
+		<PackageReference Include="Sieve" Version="2.5.5" />
+		<PackageReference Include="SixLabors.ImageSharp" Version="3.0.1" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.14.0" />
+		<PackageReference Include="Taqnyat" Version="1.0.11" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Domain\Domain.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="ClientOrders\Commands\AddClientOrderLog\" />
+		<Folder Include="ClientOrders\Commands\AddClientOrder\" />
+		<Folder Include="ClientOrders\Commands\AddNewItem\" />
+		<Folder Include="ClientOrders\Commands\AdjustItemQuantity\" />
+		<Folder Include="ClientOrders\Commands\ApplyPromoCode\" />
+		<Folder Include="ClientOrders\Commands\CancelClientOrder\" />
+		<Folder Include="ClientOrders\Commands\CancelPromoCode\" />
+		<Folder Include="ClientOrders\Commands\CompleteClientOrderPayment\" />
+		<Folder Include="ClientOrders\Commands\CreateNewOrderForUser\Command\" />
+		<Folder Include="ClientOrders\Commands\CreateNewOrder\" />
+		<Folder Include="ClientOrders\Commands\DeleteItem\" />
+		<Folder Include="ClientOrders\Commands\UpdateGuestUserOrder\" />
+		<Folder Include="ClientOrders\Commands\UpdateLocationForClientOrder\" />
+		<Folder Include="ClientOrders\Queries\GetClientOrderById\" />
+		<Folder Include="ClientOrders\Queries\GetClientOrderCountByPromotionalId\" />
+		<Folder Include="ClientOrders\Queries\GetClientOrderDetailsById\" />
+		<Folder Include="ClientOrders\Queries\GetClientOrderImagesById\" />
+		<Folder Include="ClientOrders\Queries\GetClientOrderReportByPromotionalId\" />
+		<Folder Include="ClientOrders\Queries\GetClientOrdersByClientId\" />
+		<Folder Include="ClientOrders\Queries\GetMyCartOrderDetails\" />
+		<Folder Include="ClientOrders\Queries\GetMyCartOrder\" />
+		<Folder Include="ClientOrders\Queries\ViewClientOrders\" />
+		<Folder Include="ClientOrders\Queries\ViewMyOrders\" />
+		<Folder Include="Context\" />
+		<Folder Include="Features\Gift\Command\SendGiftMessage\" />
+		<Folder Include="Files\Commands" />
+		<Folder Include="ManageClientOrders\Commands" />
+		<Folder Include="Payments\Queries" />
+		<Folder Include="Regions\Commands" />
+		<Folder Include="Regions\Queries" />
+	</ItemGroup>
+</Project>

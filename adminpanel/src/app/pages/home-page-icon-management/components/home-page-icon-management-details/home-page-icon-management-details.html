@@ -1,0 +1,88 @@
+<form id="home-page-icon-management-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="modal fade " id="home-page-icon-management-edit-view-modal" tabindex="-1" role="dialog"
+        aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تفاصيل الموقع</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="home-page-icon-title" class="col-lg-3 col-form-label form-label fw-700">
+                            العنوان</label>
+                        <div class="col-lg-9">
+                            <input formControlName="title" (keypress)="englishOnly($event)"
+                                [class.is-invalid]="!title.valid && title.touched" id="home-page-icon-title"
+                                name="home-page-icon-title" type="text" class="form-control text-right" placeholder="العنوان" />
+                            <div *ngIf="!title?.valid && title?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="home-page-icon-arabic-title" class="col-lg-3 col-form-label form-label fw-700">
+                            العنوان بالعربي</label>
+                        <div class="col-lg-9">
+                            <input formControlName="arabicTitle"
+                                [class.is-invalid]="!arabicTitle.valid && arabicTitle.touched"
+                                id="home-page-icon-arabic-title" name="home-page-icon-arabic-title" type="text"
+                                class="form-control" placeholder="العنوان" />
+                            <div *ngIf="!arabicTitle?.valid && arabicTitle?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="home-page-icon-order" class="col-lg-3 col-form-label form-label fw-700">
+                            الترتيب</label>
+                        <div class="col-lg-9">
+                            <input formControlName="order" [class.is-invalid]="!order.valid && order.touched"
+                                id="home-page-icon-order" name="home-page-icon-order" type="number" class="form-control"
+                                placeholder="الترتيب" />
+                            <div *ngIf="!order?.valid && order?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="frame-wrap">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="home-page-icon-visible"
+                                formControlName="visible" [value]="true">
+                            <label class="custom-control-label" for="home-page-icon-visible">فعال</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="home-page-icon-invisible"
+                                formControlName="visible" [value]="false">
+                            <label class="custom-control-label" for="home-page-icon-invisible">غير فعال</label>
+                        </div>
+                    </div>
+                    <!-- <div class="img-square-wrapper">
+                        <div class="avatar-upload my-0">
+                            <div class="avatar-edit">
+                                <input type='file' (change)="onHomePageImageChange($event)" id="item-image"
+                                    accept=".png, .jpg, .jpeg" />
+                                <label for="item-image"></label>
+                            </div>
+                            <div class="avatar-preview rounded">
+                                <img *ngIf="homePageItemImage" class="img-fluid img-thumbnail rounded" [src]="homePageItemImage">
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" data-content="remove" class="btn btn-default"
+                        data-dismiss="modal">الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

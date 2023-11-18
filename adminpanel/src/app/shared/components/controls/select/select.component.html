@@ -1,0 +1,29 @@
+<div class="position-relative">
+  <div id="select-dropdown" class="input-group bg-white shadow-inset-2" [class.has-length]="arrowFocus">
+    <input (click)="viewDetails = true; arrowFocus = true" [readonly]="true" type="text"
+      class="form-control border-right-0 bg-transparent pr-0" [formControl]="val" [placeholder]="placeholder">
+    <div class="input-group-append">
+      <span class="input-group-text bg-transparent border-left-0">
+        <i class="fal" [ngClass]="arrowFocus ? 'text-primary fa-angle-up': 'fa-angle-down'"
+          [class.text-primary]="arrowFocus"></i>
+      </span>
+    </div>
+  </div>
+
+  <ul id="element-items" class="list-group list-group-flush border border-top-0 shadow position-absolute w-100"
+    [style]="renderStyle" *ngIf="viewDetails">
+    <li class="list-group-item bg-light-10">
+      <div class="input-group bg-white shadow-inset-2" [class.has-length]="searchFocus">
+        <input type="text" class="form-control border-right-0 bg-transparent pr-0" (focus)="searchFocus = true;"
+          (blur)="searchFocus = false;" placeholder="Search...">
+        <div class="input-group-append">
+          <span class="input-group-text bg-transparent border-left-0">
+            <i class="fal fa-search" [class.text-primary]="searchFocus"></i>
+          </span>
+        </div>
+      </div>
+    </li>
+    <li *ngFor="let item of options; let index = index" (click)="writeValue(item.text)" class="list-group-item">
+      {{item.text}}
+    </li>
+  </ul>

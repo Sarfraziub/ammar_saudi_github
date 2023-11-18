@@ -1,0 +1,2 @@
+<i *ngFor="let in of counter(5) ;let i = index" class="fa-star"
+    [ngClass]="handleStar(i) ? 'fas text-warning' : 'far'"></i>

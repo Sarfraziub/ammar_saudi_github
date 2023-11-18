@@ -1,0 +1,44 @@
+<!-- modal alert -->
+<div class="modal fade" id="system-setting-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">اعدادات النظام</h5><button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-content">
+                    <ul class="nav nav-pills nav-justified px-0" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#contact-us-nav">تواصل
+                                معنا</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#about-us-nav">حول النظام</a>
+                        </li>
+                        <!-- <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#main-settings-nav">اعدادات
+                                عامة</a></li> -->
+                    </ul>
+                    <div class="tab-content py-3">
+                        <div class="tab-pane fade show active" id="contact-us-nav" role="tabpanel">
+                            <contact-us-cmp #contactUsComponent></contact-us-cmp>
+                        </div>
+                        <div class="tab-pane fade" id="about-us-nav" role="tabpanel">
+                            <about-us-cmp #aboutUsComponent></about-us-cmp>
+                        </div>
+                        <!-- <div class="tab-pane fade" id="main-settings-nav" role="tabpanel">
+                            <main-settings-cmp></main-settings-cmp>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button #cancelAction type="button" data-content="remove" class="btn btn-default" data-dismiss="modal">
+                    الغاء
+                </button>
+                <button type="button" (click)="onSubmit()" data-content="remove" class="btn btn-primary"
+                    id="row-submit">
+                    حفظ
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

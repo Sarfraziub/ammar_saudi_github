@@ -1,0 +1,7 @@
+<ng-container *ngIf="loadingService?.isLoading$ | async">
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
+</ng-container>
+
+<router-outlet></router-outlet>

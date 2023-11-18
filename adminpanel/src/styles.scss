@@ -1,0 +1,183 @@
+.theme-cust-theme-1 {
+    @import "./app/shared/scss/themes/cust-theme-1.scss";
+}
+
+.theme-cust-theme-2 {
+    @import "./app/shared/scss/themes/cust-theme-2.scss";
+}
+
+.theme-cust-theme-3 {
+    @import "./app/shared/scss/themes/cust-theme-3.scss";
+}
+
+.theme-cust-theme-4 {
+    @import "./app/shared/scss/themes/cust-theme-4.scss";
+}
+
+.theme-cust-theme-5 {
+    @import "./app/shared/scss/themes/cust-theme-5.scss";
+}
+
+.theme-cust-theme-6 {
+    @import "./app/shared/scss/themes/cust-theme-6.scss";
+}
+
+.theme-cust-theme-7 {
+    @import "./app/shared/scss/themes/cust-theme-7.scss";
+}
+
+.theme-cust-theme-8 {
+    @import "./app/shared/scss/themes/cust-theme-8.scss";
+}
+
+.theme-cust-theme-9 {
+    @import "./app/shared/scss/themes/cust-theme-9.scss";
+}
+
+.theme-cust-theme-10 {
+    @import "./app/shared/scss/themes/cust-theme-10.scss";
+}
+
+.theme-cust-theme-11 {
+    @import "./app/shared/scss/themes/cust-theme-11.scss";
+}
+
+.theme-cust-theme-12 {
+    @import "./app/shared/scss/themes/cust-theme-12.scss";
+}
+
+.theme-cust-theme-13 {
+    @import "./app/shared/scss/themes/cust-theme-13.scss";
+}
+
+.theme-cust-theme-14 {
+    @import "./app/shared/scss/themes/cust-theme-14.scss";
+}
+
+.theme-cust-theme-15 {
+    @import "./app/shared/scss/themes/cust-theme-15.scss";
+}
+
+.no-pointer-event {
+    pointer-events: none;
+}
+
+.c-pointer {
+    cursor: pointer;
+}
+
+.input-group {
+    ng-select2 {
+        position: relative;
+        flex: 1 1 auto;
+        width: 1%;
+        min-width: 0;
+        margin-bottom: 0;
+    }
+
+    date-picker {
+        position: relative;
+        flex: 1 1 auto;
+        width: 1%;
+        min-width: 0;
+        margin-bottom: 0;
+    }
+    date-picker:not(:first-child) {
+        .form-control {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}
+
+.hide-ngbTypeahead-result {
+    .dropdown-menu {
+        display: none !important;
+    }
+}
+
+.embed-responsive {
+    display: flex;
+    height: calc(100% - 100px);
+    iframe {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: 5px;
+    }
+}
+
+.color-error {
+    color: rgb(224, 10, 10);
+}
+
+.color-warn {
+    color: rgb(255, 196, 0);
+}
+
+.select2-dropdown {
+    z-index: 10000 !important;
+}
+
+.auto-complete-group-template {
+    .dropdown-menu {
+        min-width: 250px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 300px;
+    }
+
+    .dropdown-item {
+        background: transparent !important;
+        color: initial !important;
+        cursor: initial !important;
+        padding: 0 !important;
+    }
+}
+
+.caption-tag {
+    border-left: 3px solid #1dc9b7 !important;
+    background-color: #eef7fd;
+}
+
+.select2-selection__arrow {
+    display: none;
+}
+
+.login-screen {
+    &::before {
+        content: " ";
+        background: url(assets/water-png-712.png) no-repeat center bottom fixed;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+    }
+}
+
+.max-h-100-px {
+    max-height: 100px;
+}
+.max-h-200-px {
+    max-height: 200px;
+}
+
+.h-300-px {
+    height: 300px;
+}
+.max-h-300-px {
+    max-height: 300px;
+}
+.max-h-400-px {
+    max-height: 400px;
+}
+.max-h-500-px {
+    max-height: 500px;
+}

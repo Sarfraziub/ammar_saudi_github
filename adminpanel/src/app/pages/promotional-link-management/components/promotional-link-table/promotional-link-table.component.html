@@ -1,0 +1,33 @@
+<data-table id="promotional-link-management" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRowSelect)="onRowSelect($event)" (onDeleteRow)="onDeleteRow()"
+    (onEditRow)="onEditRow($event)" (onAddRow)="onAddRow()" (onRefreshData)="get()">
+    <column property="id" header="Id" [filter]="true" [sortable]="true">
+    </column>
+    <column property="name" header="الإسم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="mobileNo" header="الجوال" [filter]="true" [sortable]="true">
+    </column>
+    <column property="email" header="الإيميل" [filter]="true" [sortable]="true">
+    </column>
+    <column property="uniqueName" header="إسم فريد" [filter]="true" [sortable]="true">
+    </column>
+    <column property="visible" header="Action" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+           <button class="btn btn-primary" (click)="viewRecords(item.id)">عرض تقرير</button>
+        </ng-template>
+    </column>
+</data-table>
+
+
+<a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#promotional-link-management-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<promotional-link-management-details [selectedItem]="selectedItem" (onSave)="onSave();"></promotional-link-management-details>

@@ -1,0 +1,32 @@
+<data-table id="notification-template" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRowSelect)="onRowSelect($event)" (onDeleteRow)="onDeleteRow()"
+    (onEditRow)="onEditRow($event)" (onAddRow)="onAddRow()" (onRefreshData)="get()">
+    <column property="title" header="العنوان" [filter]="true" [sortable]="true">
+    </column>
+    <column property="body" header="المحتوى" [filter]="true" [sortable]="true">
+    </column>
+    <column [property]="'actions'" [header]="'ارسال'" [hideOnPrint]="true">
+        <ng-template #dataTableCell let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" (click)="onSend(item)" title="ارسال"
+                    class="btn btn-sm btn-icon btn-outline-primary shadow-0">
+                    <i class="fal fa-paper-plane"></i>
+                </a>
+            </div>
+        </ng-template>
+    </column>
+</data-table>
+
+
+<a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#notification-template-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<notification-template-details-cmp [selectedItem]="selectedItem" (onSave)="get();"></notification-template-details-cmp>

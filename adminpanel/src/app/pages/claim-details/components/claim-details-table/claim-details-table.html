@@ -1,0 +1,92 @@
+<main id="js-page-content" role="main" class="page-content py-0">
+    <div class="container">
+        <div data-size="A4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="fw-300 display-4 fw-500 color-primary-600 keep-print-font pt-4 l-h-n m-0">
+                        رقم الطلب
+                    </h3>
+                    <div class="text-dark fw-700 h1 mb-g keep-print-font">
+                        # {{claim?.driverClaimNumber}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="table-responsive">
+                        <table class="table table-clean table-sm align-self-end">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>تاريخ استلام الطلب:</strong>
+                                    </td>
+                                    <td>
+                                        {{claim?.created | date: 'dd/MM/yyyy'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        صافي المطلوب:
+                                    </td>
+                                    <td>
+                                        {{total | number: '1.2-2'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        حالة الطلب:
+                                    </td>
+                                    <td>
+                                        {{claim?.driverClaimStatusName}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table mt-5">
+                            <thead>
+                                <tr>
+                                    <th class="text-center border-top-0 table-scale-border-bottom fw-700"></th>
+                                    <th class="text-left border-top-0 table-scale-border-bottom fw-700">رقم الطلب</th>
+                                    <th class="text-left border-top-0 table-scale-border-bottom fw-700">تاريخ الطلب
+                                    </th>
+                                    <th class="text-right border-top-0 table-scale-border-bottom fw-700">العمولة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of results?.clientOrders; let index = index">
+                                    <td class="text-center fw-700">{{index + 1}}</td>
+                                    <td class="text-left strong">{{item.number}}</td>
+                                    <td class="text-left">{{item.created | date: 'dd/MM/yyyy'}}</td>
+                                    <td class="text-right">{{ item.fee | number : '1.2-2'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 mr-sm-auto">
+                    <table class="table table-clean">
+                        <tbody>
+                            <tr>
+                                <td class="text-left keep-print-font">
+                                    <h4 class="m-0 fw-700 h2 keep-print-font color-primary-700">المبلغ المستحق</h4>
+                                </td>
+                                <td class="text-right keep-print-font">
+                                    <h4 class="m-0 fw-700 h2 keep-print-font text-danger">{{total | number: '1.2-2'}}
+                                    </h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

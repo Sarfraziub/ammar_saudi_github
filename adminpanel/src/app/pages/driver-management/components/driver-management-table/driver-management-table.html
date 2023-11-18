@@ -1,0 +1,42 @@
+<data-table id="driver-management" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRowSelect)="onRowSelect($event)" [allowDelete]="false"
+    (onEditRow)="onEditRow($event)" (onAddRow)="onAddRow()" (onRefreshData)="get()">
+    <column property="name" header="الاسم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="phoneNumber" header="رقم الجوال" [filter]="true" [sortable]="true">
+    </column>
+    <column property="email" header="البريد الالكتروني" [sortable]="true" [filter]="true">
+    </column>
+    <column property="nationalId" header="رقم الوثيقة" [sortable]="true" [filter]="true">
+    </column>
+    <column property="iban" header="رقم حساب الآيبان" [sortable]="true" [filter]="true">
+    </column>
+    <column property="locked" header="حالة الحساب" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a *ngIf="!item.locked" (click)="onToggleLock(item, true)" href="javascript:void(0);" title="اغلاق"
+                    class="btn btn-danger btn-sm btn-icon waves-effect mx-1">
+                    <i class="fal fa-lock-alt"></i>
+                </a>
+                <a *ngIf="item.locked" (click)="onToggleLock(item, false)" href="javascript:void(0);" title="تفعيل"
+                    class="btn btn-primary btn-sm btn-icon waves-effect mx-1">
+                    <i class="fal fa-lock-open-alt"></i>
+                </a>
+            </div>
+        </ng-template>
+    </column>
+</data-table>
+
+
+<a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#driver-management-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<driver-management-details-cmp [selectedItem]="selectedItem" (onSave)="get();"></driver-management-details-cmp>

@@ -1,0 +1,30 @@
+
+// To add Calendar on any page use this tag 
+
+**************************************************
+    <date-picker></date-picker>
+**************************************************
+
+ - by defualt placeholder is dd/mm/yyyy
+ - by defualt caledar type "Date Only"
+
+ // To use form cotrol (formControlName , formControl or ngModel)
+
+ **************************************************
+    <date-picker formControlName=""
+        label="Birth Date"
+        placeholder="dd/mm/yyyy"> 
+    </date-picker>
+**************************************************
+
+
+**** inputs
+required (true , false)
+disable(true , false)
+readonly(true ,false)
+placeholder(string)
+type(calendarType.Date , calendarType.Time , calendarType.DateTime) // u can use calendarType on any place extend base component
+
+
+
+

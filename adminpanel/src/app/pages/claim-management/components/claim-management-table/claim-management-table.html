@@ -1,0 +1,55 @@
+<data-table id="claim-management" [items]="items" [itemCount]="items?.length" [className]="'table-bordered table-hover'"
+    (onRowSelect)="onRowSelect($event)" [allowRefresh]="false" [allowEdit]="false" [allowDelete]="false"
+    [allowAdd]="false">
+    <column property="driverClaimNumber" header="رقم المطالبة" [filter]="true" [sortable]="true">
+    </column>
+    <column property="driverName" header="اسم السائق" [filter]="true" [sortable]="true">
+    </column>
+    <column property="createdFormat" header="تاريخ المطالبة" [filter]="true" [sortable]="true">
+    </column>
+    <column property="driverClaimStatusName" header="الحالة" [filter]="true" [sortable]="true">
+    </column>
+    <column [property]="'controls'" [header]="'Controls'" [hideOnPrint]="true">
+        <ng-template #dataTableHeader let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" (click)="get()"
+                    class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mx-1">
+                    <i class="fal fa-redo"></i>
+                </a>
+            </div>
+        </ng-template>
+        <ng-template #dataTableCell let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" triggers="manual" #actionPopover="ngbPopover"
+                    (click)="actionPopover.open()" [ngbPopover]="actionContent" [popoverTitle]="actionTitle"
+                    class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mx-1">
+                    <i class="fal fa-align-center"></i>
+                </a>
+                <ng-template #actionTitle>
+                    <div class="row border-bottom">
+                        <div class="col">
+                            <div class="d-flex justify-content-center align-items-center pb-2">
+                                <h5 class="fw-500 width-sm m-0"> <i class="fal fa-exclamation-square mr-2"></i>
+                                    {{item.orderId}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template #actionContent>
+                    <ul class="list-group border p-0">
+                        <li *ngIf="item.receiptUrl" class="list-group-item list-group-item-action c-pointer py-2" (click)="onEditRow(item)">
+                            <span>مشاهدة المرفقات</span>
+                        </li>
+                        <li class="list-group-item list-group-item-action c-pointer py-2" (click)="onViewDetails(item)">
+                            <span>تفاصيل الطلب</span>
+                        </li>
+                    </ul>
+                </ng-template>
+            </div>
+        </ng-template>
+    </column>
+</data-table>
+
+
+<a #downloadFile class="d-none" [href]="srcFile" target="_blank"></a>

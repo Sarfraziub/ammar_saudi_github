@@ -1,0 +1,152 @@
+<form id="location-management-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- modal alert -->
+    <div class="modal fade" id="location-management-edit-view-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تفاصيل الموقع</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="location-type">النوع</label>
+                                <ng-select2 [options]="options" id="location-type" dropdownParent="location-type"
+                                    [class.is-invalid]="!locationType.valid && locationType.touched"
+                                    placeholder="اختر النوع" [data]="locationTypes" formControlName="locationType">
+                                </ng-select2>
+                                <div *ngIf="!locationType?.valid && locationType?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="location-type">المنطقة</label>
+                                <ng-select2 [options]="options" id="location-region" dropdownParent="location-region"
+                                    [class.is-invalid]="!regionId.valid && regionId.touched" placeholder="اختر المنطقة"
+                                    [data]="regions" formControlName="regionId">
+                                </ng-select2>
+                                <div *ngIf="!regionId?.valid && regionId?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="location-name">الاسم</label>
+                                <input formControlName="name" [class.is-invalid]="!name.valid && name.touched"
+                                    id="location-name" name="location-name" type="text" class="form-control text-right"
+                                    placeholder="الاسم" />
+                                <div *ngIf="!name?.valid && name?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="location-arabic-name">الاسم بالعربي</label>
+                                <input formControlName="arabicName"
+                                    [class.is-invalid]="!arabicName.valid && arabicName.touched"
+                                    id="location-arabic-name" name="location-arabic-name" type="text"
+                                    class="form-control" placeholder="الاسم بالعربي" />
+                                <div *ngIf="!arabicName?.valid && arabicName?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="districtName">الحي</label>
+                                <input formControlName="districtName" [class.is-invalid]="!districtName.valid && districtName.touched"
+                                    id="districtName" name="districtName" type="text" class="form-control text-right"
+                                    placeholder="الحي" />
+                                <div *ngIf="!districtName?.valid && districtName?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="districtArabicName">الحي بالعربي</label>
+                                <input formControlName="districtArabicName"
+                                    [class.is-invalid]="!districtArabicName.valid && districtArabicName.touched"
+                                    id="districtArabicName" name="districtArabicName" type="text"
+                                    class="form-control" placeholder="الحي بالعربي" />
+                                <div *ngIf="!districtArabicName?.valid && districtArabicName?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="location-description">الوصف</label>
+                                <textarea formControlName="description"
+                                    [class.is-invalid]="!description.valid && description.touched"
+                                    id="location-description" name="location-description" type="text"
+                                    class="form-control text-right" placeholder="الوصف">
+                                    </textarea>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="location-arabic-description">الوصف بالعربي</label>
+                                <textarea formControlName="arabicDescription"
+                                    [class.is-invalid]="!arabicDescription.valid && arabicDescription.touched"
+                                    id="location-arabic-description" name="location-arabic-description" type="text"
+                                    class="form-control" placeholder="الوصف بالعربي">
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="col-6">
+                            <div class="frame-wrap">
+                                <div class="custom-control custom-checkbox custom-control-inline m-0">
+                                    <input type="checkbox" class="custom-control-input" id="location-more-needed"
+                                        name="location-more-needed-user" formControlName="moreNeeded" [checked]="moreNeeded">
+                                    <label class="custom-control-label" for="location-more-needed">أكثر حاجة</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6" *ngIf="isEdit">
+                            <div class="frame-wrap">
+                                <div class="custom-control custom-checkbox custom-control-inline m-0">
+                                    <input type="checkbox" class="custom-control-input" id="active"
+                                    [ngClass]="{'is-invalid': !active.valid && active.touched}"
+                                        name="location-more-needed-user" (change)="setIsActive($event)" [checked]="active.value === 1">
+                                    <label class="custom-control-label" for="active">نشيط</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <image-viewer #imageViewer [attachementTitle]="'صور للموقع'" (onRemoveImage)="onRemoveImage($event)"></image-viewer>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <app-google-map [selectedMarker]="marker"
+                                (onSetMarker)="onSetMarker($event)"></app-google-map>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" data-content="remove" class="btn btn-default"
+                        data-dismiss="modal">الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,84 @@
+<form id="promotional-link-management-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- modal alert -->
+    <div class="modal fade " id="promotional-link-management-edit-view-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">إضافة رابط ترويجي</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="promotional-link-name">الاسم</label>
+                                <input formControlName="name" (keypress)="englishOnly($event)"
+                                    [class.is-invalid]="!name.valid && name.touched" id="promotional-link-name"
+                                    name="promotional-link-name" type="text" class="form-control text-right"
+                                    placeholder="الاسم" />
+                                <div *ngIf="!name?.valid && name?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="email">الإيميل</label>
+                                <input formControlName="email"
+                                    [class.is-invalid]="!email.valid && email.touched || email?.errors?.email"
+                                    id="email" name="email" type="email" class="form-control"
+                                    placeholder="الإيميل" />
+                                <div *ngIf="!email?.valid && email?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                                <div *ngIf="email?.errors?.email" class="invalid-feedback">
+                                    ادخل ايميل صحيح 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="promotional-link-mobile">الجوال</label>
+                                <input formControlName="mobileNo"
+                                    [class.is-invalid]="!mobile.valid && mobile.touched"
+                                    id="package-mobile" name="package-mobile" type="text"
+                                    class="form-control text-right" placeholder="الجوال" />
+                                <div *ngIf="!mobile?.valid && mobile?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="promotional-link-unique-name">إسم فريد</label>
+                                <input formControlName="uniqueName" (keypress)="englishOnly($event)" (input)="uniqueNameAvailability($event)"
+                                    [class.is-invalid]="isUniqueNameExist || !uniqueName.valid && uniqueName.touched"
+                                    id="promotional-link-unique-name" name="promotional-link-unique-name" type="text"
+                                    class="form-control" placeholder="إسم فريد" />
+                                <div *ngIf="!uniqueName?.valid && uniqueName?.touched"
+                                    class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                                <div *ngIf="isUniqueNameExist"
+                                    class="invalid-feedback">
+                                    إسم فريد غير متاح
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" data-content="remove" class="btn btn-default"
+                        data-dismiss="modal">الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

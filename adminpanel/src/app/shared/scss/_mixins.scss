@@ -1,0 +1,5 @@
+@import "./variables";
+
+@mixin bg-image($relativeUrl) {
+    background-image: url($assets-root + $relativeUrl);
+}

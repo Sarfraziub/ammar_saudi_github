@@ -1,0 +1,70 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html"
+        ],
+        "versionedFiles": [
+          "/*.bundle.css",
+          "/*.bundle.js",
+          "/*.chunk.js"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**"
+        ],
+        "urls": [
+          "**/fonts.googleapis.com/**/*",
+          "**/www.gstatic.com/**/*"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-performance",
+      "urls": [
+        "/api/attachments/*"
+      ],
+      "cacheConfig": {
+        "maxSize": 200,
+        "maxAge": "7d",
+        "timeout": "10s",
+        "strategy": "performance"
+      }
+    },
+    {
+      "name": "api-freshness",
+      "urls": [
+        "/api/*",
+        "/api/**/*",
+        "/api/**/**/*",
+        "/api/**/**/**/*",
+        "/api/views/*",
+        "/api/app-structure",
+        "/api/workflow/view",
+        "/api/issues/*",
+        "/.well-known",
+        "/certs"
+      ],
+      "cacheConfig": {
+        "maxSize": 200,
+        "maxAge": "2d",
+        "timeout": "10s",
+        "strategy": "freshness"
+      }
+    }
+  ]
+}

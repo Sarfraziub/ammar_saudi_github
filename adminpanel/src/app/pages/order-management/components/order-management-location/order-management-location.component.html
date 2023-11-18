@@ -1,0 +1,21 @@
+<!-- Add Bootstrap modal classes -->
+<div class="modal-header">
+    <button type="button" class="close pull-left" aria-label="Close" (click)="dismissModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title text-right">{{item?.clientOrderStatusName}}</h4>
+</div>
+<div class="modal-body">
+    <!-- Add Google Map component code here -->
+    <div class="container">
+        <!-- <google-map #myGoogleMap height="500px" width="100%" [zoom]="zoom"
+            [center]="center" [options]="options">
+            <map-marker #markerElem *ngFor="let marker of markers" 
+                [position]="marker.position" 
+                [label]="marker.label"
+                [title]="marker.title" 
+                [options]="marker.options">
+            </map-marker>
+        </google-map> -->
+    </div>
+</div>

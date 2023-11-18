@@ -1,0 +1,30 @@
+<form id="system-setting-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group row">
+        <label for="system-setting-number-of-allowed"
+            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+            عدد الطلبات المسموح فيها بكل رحلة</label>
+        <div class="col-lg-9">
+            <input formControlName="numberOfOrders" [class.is-invalid]="!numberOfOrders.valid && numberOfOrders.touched"
+                id="system-setting-number-of-allowed" name="system-setting-number-of-allowed" type="text"
+                class="form-control" placeholder="رقم الجوال" />
+            <div *ngIf="!numberOfOrders?.valid && numberOfOrders?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <div class="form-group row">
+        <label for="system-setting-close-time" class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+            اخر موعد استلام طلب</label>
+        <div class="col-lg-9">
+            <time-picker id="system-setting-close-time" label="From Date" placeholder="dd/mm/yyyy"
+                formControlName="closeTime" [class.is-invalid]="!closeTime.valid && closeTime.touched">
+            </time-picker>
+            <div *ngIf="!closeTime?.valid && closeTime?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</form>

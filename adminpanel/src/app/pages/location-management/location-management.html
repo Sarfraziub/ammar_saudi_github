@@ -1,0 +1,25 @@
+<main id="js-page-content" role="main" class="page-content px-0">
+    <div id="panel-location-management" class="panel" [ngClass]="{'panel-fullscreen': isFullScreen}">
+        <div class="panel-hdr">
+            <h2>
+                إدارة المواقع
+            </h2>
+            <div class="panel-toolbar">
+                <button class="btn btn-panel" (click)="isFullScreen = onToggleFullScreen(isFullScreen)"
+                    data-action="panel-fullscreen" placement="bottom"
+                    ngbTooltip="{{'Full Screen'}}"></button>
+            </div>
+        </div>
+
+        <div class="panel-container show">
+            <div class="panel-content">
+                <div class="row no-gutters align-items-center py-1">
+                    <div class="col mx-2 mb-3">
+                        <location-management-table-cmp></location-management-table-cmp>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

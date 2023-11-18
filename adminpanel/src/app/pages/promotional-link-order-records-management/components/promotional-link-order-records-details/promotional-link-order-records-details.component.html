@@ -1,0 +1,67 @@
+<div class="col-12 p-0">
+    <ul class="list-group p-0" *ngIf="promotionalData">
+        <li class="list-group-item d-flex justify-content-between">
+            <span class="font-weight-bold">الإسم</span>
+            <span class="">{{promotionalData.name}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <span class="font-weight-bold">الإيميل</span>
+            <span class="">{{promotionalData.email}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <span class="font-weight-bold">إسم فريد</span>
+            <span class="">{{promotionalData.uniqueName}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <span class="font-weight-bold">الجوال</span>
+            <span class="">{{promotionalData.mobileNo}}</span>
+        </li>
+    </ul>
+</div>
+
+<div class="row" *ngIf="clientOrderCount">
+    <div class="col-lg-3 col-md-6 col-sm-12 my-2">
+        <div class="card card-body bg-dark bg-opacity-15 p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="purecounter text-light mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="1958"
+                        data-purecounter-delay="200">{{clientOrderCount.deliveredCount}}</h2>
+                    <span class="mb-0 h6 text-light fw-light" translate>الطلبات الموصوله</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 my-2">
+        <div class="card card-body bg-success bg-opacity-15 p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="purecounter text-light mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="1958"
+                        data-purecounter-delay="200">{{clientOrderCount.newOrderCount}}</h2>
+                    <span class="mb-0 text-light h6 fw-light" translate>الطلبات الجديده</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 my-2">
+        <div class="card card-body bg-warning bg-opacity-15 p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="purecounter text-light mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="1958"
+                        data-purecounter-delay="200">{{clientOrderCount.paymentReceivedCount}}</h2>
+                    <span class="mb-0 h6 text-light fw-light" translate>الطلبات المدفوعة</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 my-2">
+        <div class="card card-body bg-info bg-opacity-15 p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="purecounter text-light mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="1958"
+                        data-purecounter-delay="200">{{clientOrderCount.withDriverCount}}</h2>
+                    <span class="mb-0 h6 text-light fw-light" translate>مع السائق</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

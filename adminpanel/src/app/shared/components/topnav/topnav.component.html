@@ -1,0 +1,148 @@
+<header class="page-header" role="banner">
+
+    <!-- we need this logo when user switches to nav-function-top -->
+    <div class="page-logo">
+        <a href="javascript:function() { return false; }"
+            class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal"
+            data-target="#modal-shortcut">
+            <img *ngIf="!imageUrl" alt="قطرات" aria-roledescription="logo" [src]="imageUrl" />
+            <span class="page-logo-text fs-xs">قطرات</span>
+            <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
+            <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+        </a>
+    </div>
+
+
+    <!-- DOC: nav menu layout change shortcut -->
+    <div class="hidden-md-down dropdown-icon-menu position-relative">
+        <a (click)="onToggleDocument('nav-function-hidden')" class="header-btn btn js-waves-off" data-action="toggle"
+            data-class="nav-function-hidden" title="اخفاء القائمة">
+            <i class="ni ni-menu"></i>
+        </a>
+        <ul>
+            <li>
+                <a (click)="onToggleDocument('nav-function-minify')" class="btn js-waves-off" data-action="toggle"
+                    data-class="nav-function-minify" title="تصغير القائمة">
+                    <i class="ni ni-minify-nav"></i>
+                </a>
+            </li>
+            <li>
+                <a (click)="onToggleDocument('nav-function-fixed')" class="btn js-waves-off" data-action="toggle"
+                    data-class="nav-function-fixed" title="قفل القائمة">
+                    <i class="ni ni-lock-nav"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- DOC: mobile button appears during mobile width -->
+    <div class="hidden-lg-up">
+        <a href="javascript:function() { return false; }" (click)="onToggleDocument('mobile-nav-on')"
+            class="header-btn btn press-scale-down" data-action="toggle" data-class="mobile-nav-on">
+            <i class="ni ni-menu"></i>
+        </a>
+    </div>
+
+    <div class="ml-auto d-flex">
+
+        <!-- activate app search icon (mobile) -->
+        <div class="hidden-sm-up">
+            <a href="javascript:function() { return false; }" (click)="onToggleDocument('mobile-search-on')"
+                class="header-icon" data-action="toggle" data-class="mobile-search-on" data-focus="search-field"
+                title="Search">
+                <i class="fal fa-search"></i>
+            </a>
+        </div>
+
+        <!-- app user menu -->
+        <div>
+            <a href="javascript:function() { return false; }" data-toggle="dropdown"
+                class="header-icon d-flex align-items-center justify-content-center ml-2">
+                <img class="profile-image rounded-circle" [src]="imageUrl" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
+                <div class="dropdown-header bg-npm-gradient d-flex flex-row py-4 rounded-top">
+                    <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+                        <span class="mr-2">
+                            <img class="rounded-circle profile-image" [src]="imageUrl" />
+                        </span>
+                        <div class="info-card-text">
+                            <div class="fs-lg text-truncate text-truncate-lg text-dark">{{userInformation?.name}}</div>
+                            <span class="text-truncate text-truncate-md opacity-80 text-dark">{{userInformation?.email}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-divider m-0"></div>
+
+                <a href="javascript:function() { return false; }" (click)="openFullscreen()" class="dropdown-item"
+                    data-action="app-fullscreen">
+                    <span data-i18n="drpdwn.fullscreen">شاشة كاملة</span>
+                    <i class="float-right text-muted fw-n">F11</i>
+                </a>
+                <a href="javascript:function() { return false; }" (click)="printScreen()" class="dropdown-item"
+                    data-action="app-print">
+                    <span data-i18n="drpdwn.print">طباعة</span>
+                    <i class="float-right text-muted fw-n">Ctrl + P</i>
+                </a>
+                <div class="dropdown-divider m-0"></div>
+
+                <a href="javascript:function() { return false; }" data-toggle="modal"
+                    data-target="#system-setting-modal" class="dropdown-item">
+                    <span data-i18n="drpdwn.print">اعدادات النظام</span>
+                </a>
+                <a href="javascript:function() { return false; }" data-toggle="modal"
+                    data-target="#user-profile-modal" class="dropdown-item">
+                    <span data-i18n="drpdwn.print">الملف الشخصي</span>
+                </a>
+                <div class="dropdown-divider m-0"></div>
+                <a (click)="logout()" class="dropdown-item fw-500 pt-3 pb-3">
+                    <span data-i18n="drpdwn.page-logout">تسجيل الخروج</span>
+                    <span class="float-right fw-n">@ {{userInformation?.name}}</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</header>
+
+<!-- BEGIN Quick Menu -->
+<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+<nav class="shortcut-menu d-none d-sm-block">
+    <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
+    <label for="menu_open" class="menu-open-button ">
+        <span class="app-shortcut-icon d-block"></span>
+    </label>
+    <a href="javascript:function() { return false; }" (click)="scrollTop()" class="menu-item btn" data-toggle="tooltip"
+        data-placement="left" title="العودة للأعلى">
+        <i class="fal fa-arrow-up"></i>
+    </a>
+    <a class="menu-item btn" title="تسجيل الخروج" (click)="logout()" data-toggle="tooltip" data-placement="left">
+        <i class="fal fa-sign-out"></i>
+    </a> <a href="javascript:function() { return false; }" (click)="openFullscreen()" class="menu-item btn"
+        data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="شاشة كاملة">
+        <i class="fal fa-expand"></i>
+    </a>
+    <a href="javascript:function() { return false; }" data-toggle="modal" data-target="#system-setting-modal"
+        class="menu-item btn" data-action="app-print" data-placement="left" title="اعدادات النظام">
+        <i class="fal fa-cog"></i>
+    </a>
+    <a href="javascript:function() { return false; }" data-toggle="modal" data-target="#user-profile-modal"
+        class="menu-item btn" data-action="app-print" data-placement="left" title="الملف الشخصي">
+        <i class="fal fa-user"></i>
+    </a>
+    <a href="javascript:function() { return false; }" (click)="printScreen()" class="menu-item btn"
+        data-action="app-print" data-toggle="tooltip" data-placement="left" title="طباعة الشاشة">
+        <i class="fal fa-print"></i>
+    </a>
+</nav>
+<!-- END Quick Menu -->
+
+
+<!-- System Settings -->
+
+<app-system-setting></app-system-setting>
+
+<app-user-profile></app-user-profile>
+
+<!-- System Settings -->

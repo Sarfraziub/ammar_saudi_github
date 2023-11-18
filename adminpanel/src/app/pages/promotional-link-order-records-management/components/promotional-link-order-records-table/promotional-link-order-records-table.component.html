@@ -1,0 +1,60 @@
+<div class="card w-100 my-2">
+    <div class="card-body">
+      <h5 class="card-title">Filters</h5>
+      <form>
+          <div class="row" [formGroup]="form">
+              <div class="col-lg-6 col-md-6 col-sm-12 my-2">
+                <label for="">تاريخ البداية</label>
+               <date-picker formControlName="startDate" label="Start Date" placeholder="تاريخ البداية"></date-picker>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 my-2">
+                <label for="">تاريخ النهاية</label>
+                <date-picker formControlName="endDate" label="End Date" placeholder="تاريخ النهاية"></date-picker>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="filterData()">حفظ</button>
+      </form>
+    </div>
+  </div>
+
+<!-- <data-table id="promotional-link-management" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRowSelect)="onRowSelect($event)" (onDeleteRow)="onDeleteRow()"
+    (onEditRow)="onEditRow($event)" (onAddRow)="onAddRow()" (onRefreshData)="get()"> -->
+<data-table id="promotional-link-management" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRefreshData)="get()">
+    <column property="number" header="رقم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="clientOrderStatus" header="حالة الطلب" [filter]="true" [sortable]="true">
+    </column>
+    <column property="clientName" header="الإسم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="clientMobileNo" header="الجوال" [filter]="true" [sortable]="true">
+    </column>
+    <column property="clientEmail" header="الإيميل" [filter]="true" [sortable]="true">
+    </column>
+    <column property="cost" header="المبلغ الإجمالي" [filter]="true" [sortable]="true">
+    </column>
+    <column property="serviceType" header="نوع الخدمة" [filter]="true" [sortable]="true">
+    </column>
+    <column property="created" header="تاريخ الإنشاء" [filter]="true" [sortable]="true">
+    </column>
+    <!-- <column property="visible" header="Action" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+           <button class="btn btn-primary" (click)="viewRecords(item.id)">عرض تقرير</button>
+        </ng-template>
+    </column> -->
+</data-table>
+
+
+<!-- <a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#promotional-link-management-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<promotional-link-order-records-details [selectedItem]="selectedItem" (onSave)="onSave();"></promotional-link-order-records-details> -->

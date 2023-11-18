@@ -1,0 +1,31 @@
+/* I can't use the bootstrap striped table, because of the expandable rows */
+.row-odd {
+  background-color: #f6f6f6;
+}
+
+.data-table .substitute-rows > tr:hover,
+:host .data-table .data-table-row:hover {
+  background-color: #ececec;
+}
+
+.select-column-header {
+  > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media print {
+  .data-table-wrapper {
+    .data-table {
+      display: block !important;
+      width: 100% !important;
+    }
+  }
+}

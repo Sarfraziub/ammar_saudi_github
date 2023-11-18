@@ -1,0 +1,59 @@
+<main id="js-page-content" role="main" class="page-content px-0">
+    <div id="panel-driver-configuration" class="panel" [ngClass]="{'panel-fullscreen': isFullScreen}">
+        <div class="panel-hdr">
+            <h2>
+                إدارة عمولة السائقين
+            </h2>
+            <div class="panel-toolbar">
+                <button class="btn btn-panel" (click)="isFullScreen = onToggleFullScreen(isFullScreen)"
+                    data-action="panel-fullscreen" placement="bottom" ngbTooltip="{{'Full Screen'}}"></button>
+            </div>
+        </div>
+
+        <div class="panel-container show">
+            <div class="panel-content">
+                <form id="driver-configuration-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="row no-gutters align-items-center py-1">
+                        <div class="col mx-2 mb-3">
+                            <div class="frame-wrap">
+                                <label for="driver-fee-type" class="d-block mb-2 form-label fw-700">
+                                    طريقة الحساب</label>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="driver-percentage"
+                                        formControlName="feeType" [value]="1">
+                                    <label class="custom-control-label" for="driver-percentage">نسبة</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="driver-static"
+                                        formControlName="feeType" [value]="2">
+                                    <label class="custom-control-label" for="driver-static">قيمة ثابتة</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col mx-2 mb-3">
+                            <div class="form-group mb-0">
+                                <label class="mb-2 form-label fw-700" for="driver-value">{{feeType?.value ===
+                                    driverFeesType.Percentage ?
+                                    'النسبة' : 'القيمة'}}</label>
+                                <input (keypress)="numberOnly($event)" formControlName="value"
+                                    [class.is-invalid]="!value.valid && value.touched" id="driver-value"
+                                    name="driver-value" type="text" class="form-control"
+                                    placeholder="{{feeType.value === 1 ? 'النسبة' : 'القيمة'}}" />
+                                <div *ngIf="!value?.valid && value?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex justify-content-end py-1 px-2">
+                        <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                            حفظ
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,180 @@
+<aside class="page-sidebar" [class.list-filter-active]="isFilter">
+
+    <div class="page-logo">
+        <img src="{{ ( 'logo-black-white' | baProfilePicture ) }}" alt="قطرات" aria-roledescription="logo">
+        <a href="javascript:void(0);"
+            class="page-logo-link press-scale-down d-flex align-items-center position-relative">
+            <span class="page-logo-text ml-3 fs-xl" (click)="onTogglePage('')">قطرات</span>
+        </a>
+    </div>
+
+    <!-- BEGIN PRIMARY NAVIGATION -->
+    <nav id="js-primary-nav" class="primary-nav js-list-filter" role="navigation">
+        <div class="info-card">
+            <img class="profile-image rounded-circle" [attr.alt]="user?.fullName" [src]="imageUrl">
+            <div class="info-card-text">
+                <a href="javascript:void(0);" class="d-flex align-items-center text-white">
+                    <span class="text-truncate text-truncate-sm d-inline-block">
+                        {{userInformation?.name}}
+                    </span>
+                </a>
+                <span class="d-inline-block text-truncate text-truncate-sm"> {{userInformation?.email}}
+                </span>
+            </div>
+            <img class="cover" alt="cover" src="{{ ( 'card-backgrounds/cover-8-lg' | baProfilePicture ) }}">
+        </div>
+
+        <ul id="js-nav-menu" class="nav-menu js-nav-built">
+            <li [ngClass]="{'active open': viewUser}">
+                <a href="javascript:void(0);" title="المشرفين" (click)="onToggleUser()" data-filter-tags=""
+                    class="waves-effect waves-themed">
+                    <i class="fal fa-users"></i>
+                    <span class="nav-link-text" data-i18n="nav.application_intel">المشرفين</span>
+                    <b class="collapse-sign"><em
+                            [class]="viewUser ? 'fal fa-angle-up' : 'fal fa-angle-down'"></em></b></a>
+                <ul>
+                    <li>
+                        <a href="javascript:void(0);" (click)="onTogglePage('admin-management')" title="إدارة المشرفين"
+                            data-filter-tags="" class=" waves-effect waves-themed">
+                            <span class="nav-link-text">إدارة المشرفين</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" (click)="onTogglePage('driver-management')" title="إدارة السواقين"
+                            data-filter-tags="" class=" waves-effect waves-themed">
+                            <span class="nav-link-text">إدارة السائقين</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" (click)="onTogglePage('user-management')" title="إدارة العملاء"
+                            data-filter-tags="" class=" waves-effect waves-themed">
+                            <span class="nav-link-text">إدارة العملاء</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li [ngClass]="{'active open': viewLocation}">
+                <a href="javascript:void(0);" title="المواقع" (click)="onToggleLocation()" data-filter-tags=""
+                    class="waves-effect waves-themed">
+                    <i class="fal fa-map-marked-alt"></i>
+                    <span class="nav-link-text" data-i18n="nav.application_intel">المواقع</span>
+                    <b class="collapse-sign"><em
+                            [class]="viewLocation ? 'fal fa-angle-up' : 'fal fa-angle-down'"></em></b></a>
+                <ul>
+                    <li>
+                        <a href="javascript:void(0);" (click)="onTogglePage('region-management')" title="إدارة المناطق"
+                            data-filter-tags="" class=" waves-effect waves-themed">
+                            <span class="nav-link-text">إدارة المناطق</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" (click)="onTogglePage('location-management')"
+                            title="إدارة المواقع" data-filter-tags="" class=" waves-effect waves-themed">
+                            <span class="nav-link-text">إدارة المواقع</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" (click)="onTogglePage('location-maps')"
+                            title="location mappers" data-filter-tags="" class=" waves-effect waves-themed">
+                            <span class="nav-link-text">خرائط الموقع</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li [ngClass]="{'active open': viewItem}">
+                <a href="javascript:void(0);" title="المواقع" (click)="onToggleItem()" data-filter-tags=""
+                    class="waves-effect waves-themed">
+                    <i class="fal fa-shopping-cart"></i>
+                    <span class="nav-link-text" data-i18n="nav.application_intel">المواد</span>
+                    <b class="collapse-sign"><em
+                            [class]="viewLocation ? 'fal fa-angle-up' : 'fal fa-angle-down'"></em></b></a>
+                <ul>
+                    <li>
+                        <a href="javascript:void(0);" (click)="onTogglePage('package-management')" title="إدارة الباقات"
+                            data-filter-tags="" class=" waves-effect waves-themed">
+                            <span class="nav-link-text">إدارة الباقات</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" (click)="onTogglePage('item-management')" title="إدارة المواد"
+                            data-filter-tags="" class=" waves-effect waves-themed">
+                            <span class="nav-link-text">إدارة المواد</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('promotional-link-management')"
+                    title="إدارة روابط المشاهير" data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-camera-home"></i>
+                    <span class="nav-link-text">إدارة روابط المشاهير</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('home-page-icon-management')"
+                    title="إدارة الشاشة الرئيسية لنظام العملاء" data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-camera-home"></i>
+                    <span class="nav-link-text">إدارة الشاشة الرئيسية لنظام العملاء</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('driver-configuration')"
+                    title="إدارة عمولة السائقين" data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-money-bill-alt"></i>
+                    <span class="nav-link-text">إدارة عمولة السائقين</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('order-management')" title="إدارة الطلبات"
+                    data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-tasks"></i>
+                    <span class="nav-link-text">إدارة الطلبات</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('influencer-videos')" title="إدارة محتوى المشاهير"
+                    data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-users-crown"></i>
+                    <span class="nav-link-text">إدارة محتوى المشاهير</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('feedback-management')" title="إدارة التعليقات"
+                    data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-comments"></i>
+                    <span class="nav-link-text">إدارة التعليقات</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('slider-management')" title="إدارة محتوى الصور"
+                    data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-images"></i>
+                    <span class="nav-link-text">إدارة محتوى الصور</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('promocode-management')"
+                    title="إدارة الرمز الترويجي" data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-percent"></i>
+                    <span class="nav-link-text">إدارة الرمز الترويجي</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('notification-template')" title=" إدارة الاشعارات"
+                    data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-bells"></i>
+                    <span class="nav-link-text">إدارة الاشعارات</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="onTogglePage('claim-management')" title="إدارة المطالبات"
+                    data-filter-tags="" class=" waves-effect waves-themed">
+                    <i class="fal fa-money-check-edit-alt"></i>
+                    <span class="nav-link-text">إدارة المطالبات</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</aside>

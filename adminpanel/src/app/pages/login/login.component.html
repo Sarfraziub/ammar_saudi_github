@@ -1,0 +1,46 @@
+<div class="page-wrapper auth direction-right">
+    <div class="page-inner bg-brand-gradient">
+        <div class="page-content-wrapper bg-transparent m-0 login">
+            <div class="height-10 w-100 shadow-lg px-4 bg-brand-gradient">
+            </div>
+            <div class="flex-1 text-right bg-white position-relative login-screen">
+                <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4">
+                            <div class="card p-4 rounded-plus bg-faded">
+                                <div class="img-square-wrapper">
+                                    <div class="avatar-upload m-0 mx-auto">
+                                        <div class="avatar-preview">
+                                            <img class="img-fluid img-thumbnail" src="assets/logo-blank.png">
+                                        </div>
+                                    </div>
+                                </div>
+                                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                    <div class="form-group my-2">
+                                        <input type="text" id="phone-number" (keypress)="numberOnly($event)"
+                                            [attr.maxlength]="14"
+                                            [class.is-invalid]="!phoneNumber.valid && phoneNumber.touched"
+                                            class="form-control form-control-lg" placeholder="رقم الهاتف"
+                                            formControlName="phoneNumber">
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col my-2">
+                                            <button type="submit"
+                                                class="btn btn-primary btn-lg btn-block btn-lg waves-effect waves-themed">
+                                                ارسال
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-brand-gradient position-absolute pos-bottom pos-left pos-right text-center p-3 text-white w-100">
+                        2022 © Qatarat
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

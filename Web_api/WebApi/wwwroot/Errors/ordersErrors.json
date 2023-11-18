@@ -1,0 +1,12 @@
+[
+  {
+    "Id": 1,
+    "Error": "The Promo code is not valid",
+    "ArabicError": "الرمز الترويجي غير صالح"
+  },
+  {
+    "Id": 2,
+    "Error": "Client Order already with a driver",
+    "ArabicError": "طلب العميل بالفعل مع سائق"
+  }
+]

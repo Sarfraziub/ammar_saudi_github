@@ -1,0 +1,37 @@
+<div class="input-group mb-g" *ngIf="!disableSearch">
+  <input [formControl]="searchControl" (input)="onSearch()" type="text"
+    class="form-control form-control-lg shadow-inset-2" id="js_default_list_filter" placeholder="Filter list">
+  <div class="input-group-append">
+    <div class="input-group-text">
+      <i class="fal fa-search fs-xl"></i>
+    </div>
+  </div>
+</div>
+<ul class="list-group pre-scrollable border" *ngIf="nodes.length">
+  <li *ngFor="let node of nodes" class="list-group-item c-pointer py-0"
+    [class.active]="node?.isSelected && (node.isClose || !node?.children?.length)">
+    <div [class.parent]="node?.children?.length" class="d-flex">
+      <a class="py-2" *ngIf="node?.children?.length && node?.isClose" (click)="open(node)">
+        <i class="fal fa-arrow-alt-right pr-2"></i>
+      </a>
+
+      <a class="py-2" *ngIf="node?.children?.length && !node?.isClose" (click)="close(node)">
+        <i class="fal fa-arrow-alt-down pr-2"></i>
+      </a>
+      <div class="py-2 flex-grow-1 c-pointer" (click)="select(node)">
+        <span [innerHTML]="node?.label || node?.name || node?.value"></span>
+        <a class="float-right" *ngIf="node?.isSelected">
+          <i class="fal fa-check-circle text-white"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row mx-0" [class.py-2]="!node?.isClose" *ngIf="node?.children?.length && !node?.isClose">
+      <div class="col">
+        <app-tree-view [data]="node?.children || []" [isChild]="true" disableSearch="true" (onSelect)="select($event)">
+        </app-tree-view>
+      </div>
+    </div>
+
+  </li>
+</ul>

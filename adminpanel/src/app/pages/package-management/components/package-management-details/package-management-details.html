@@ -1,0 +1,101 @@
+<form id="package-management-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- modal alert -->
+    <div class="modal fade " id="package-management-edit-view-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تفاصيل الباقة</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="package-name">الاسم</label>
+                                <input formControlName="name" (keypress)="englishOnly($event)"
+                                    [class.is-invalid]="!name.valid && name.touched" id="package-name"
+                                    name="package-name" type="text" class="form-control text-right"
+                                    placeholder="الاسم" />
+                                <div *ngIf="!name?.valid && name?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="package-arabic-name">الاسم بالعربي</label>
+                                <input formControlName="arabicName"
+                                    [class.is-invalid]="!arabicName.valid && arabicName.touched"
+                                    id="package-arabic-name" name="package-arabic-name" type="text" class="form-control"
+                                    placeholder="الاسم بالعربي" />
+                                <div *ngIf="!arabicName?.valid && arabicName?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="package-description">الوصف</label>
+                                <input formControlName="description" (keypress)="englishOnly($event)"
+                                    [class.is-invalid]="!description.valid && description.touched"
+                                    id="package-description" name="package-description" type="text"
+                                    class="form-control text-right" placeholder="الوصف" />
+                                <div *ngIf="!description?.valid && description?.touched" class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="package-arabic-description">الوصف بالعربي</label>
+                                <input formControlName="arabicDescription"
+                                    [class.is-invalid]="!arabicDescription.valid && arabicDescription.touched"
+                                    id="package-arabic-description" name="package-arabic-description" type="text"
+                                    class="form-control" placeholder="الوصف بالعربي" />
+                                <div *ngIf="!arabicDescription?.valid && arabicDescription?.touched"
+                                    class="invalid-feedback">
+                                    هذه الحقل اجباري.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frame-wrap">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="package-visible"
+                                formControlName="visible" [value]="true">
+                            <label class="custom-control-label" for="package-visible">فعال</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="package-invisible"
+                                formControlName="visible" [value]="false">
+                            <label class="custom-control-label" for="package-invisible">غير فعال</label>
+                        </div>
+                    </div>
+                    <div class="img-square-wrapper">
+                        <div class="avatar-upload my-0">
+                            <div class="avatar-edit">
+                                <input type='file' (change)="onItemFileChange($event)" id="package-image"
+                                    accept=".png, .jpg, .jpeg" />
+                                <label for="package-image"></label>
+                            </div>
+                            <div class="avatar-preview rounded">
+                                <img *ngIf="itemImage" class="img-fluid img-thumbnail rounded" [src]="itemImage">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" data-content="remove" class="btn btn-default"
+                        data-dismiss="modal">الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

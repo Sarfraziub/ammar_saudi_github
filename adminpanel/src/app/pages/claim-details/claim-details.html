@@ -1,0 +1,74 @@
+<main id="js-page-content" role="main" class="page-content px-0">
+    <div id="panel-claim-details" class="panel" [ngClass]="{'panel-fullscreen': isFullScreen}">
+        <div class="panel-hdr d-print-none">
+            <h2>
+                تفاصيل الطلب
+            </h2>
+            <div class="panel-toolbar">
+                <button class="btn btn-panel" (click)="isFullScreen = onToggleFullScreen(isFullScreen)"
+                    data-action="panel-fullscreen" placement="bottom" ngbTooltip="{{'Full Screen'}}"></button>
+            </div>
+        </div>
+
+        <div class="panel-container show">
+            <div class="panel-content">
+                <div class="row no-gutters align-items-center py-1">
+                    <div class="col mx-2 mb-3">
+                        <claim-details-table-cmp></claim-details-table-cmp>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  *ngIf="claim.driverClaimStatus !== 2" class="panel-container show d-print-none">
+            <div class="panel-content  py-0">
+                <div class="row no-gutters align-items-center py-1">
+                    <div class="col mx-2 mb-3">
+                        <main id="js-page-content" role="main" class="page-content  py-0">
+                            <div class="container">
+                                <div data-size="A4" class="py-4">
+                                    <div class="form-row" *ngIf="attachments.length === 0">
+                                        <div class="col">
+                                            <div (click)="onToggleUpload()"
+                                                class="card bg-light text-dark c-pointer text-center p-3">
+                                                <i class="fal fa-plus fs-xl pb-2"></i>
+                                                <blockquote class="blockquote mb-0">
+                                                    <p class="mb-0">اضغط هنا لتحميل الملف</p>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input #uploadFile type="file" class="custom-file-input d-none" id="uploaded-images"
+                                        accept="application/pdf" (change)="onSelect($event)" multiple>
+
+                                    <div id="customize p-0-thumbnails-gallery" class="justified-gallery-flex bg-white">
+                                        <div *ngFor="let file of attachments"
+                                            class="one-upload-file d-flex justify-content-center align-items-center p-0 position-relative">
+                                            <!-- <img class="rounded img-fluid max-h-500-px" [src]="file.file" />
+                                                 -->
+                                            <div class="d-flex flex-column align-items-center">
+                                                <i class="fal fa-file-pdf fa-5x"></i>
+                                                <div class="caption py-2">{{file.src.name}}</div>
+                                            </div>
+                                            <button type="button" (click)="onRemove(file)"
+                                                class="position-absolute py-1 d-flex justify-content-center align-items-center pos-top pos-left btn clear-image btn-default btn-icon m-2 shadow-lg">
+                                                <i class="fal fa-times fa-2x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row d-flex justify-content-end p-2"><button data-content="remove"
+                                            (click)="onCloseClaim()" id="row-submit" [disabled]="attachments.length === 0"
+                                            class="btn btn-primary">
+                                            اغلاق الطلب </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

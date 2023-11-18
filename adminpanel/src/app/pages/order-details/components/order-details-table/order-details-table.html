@@ -1,0 +1,123 @@
+<main id="js-page-content" role="main" class="page-content">
+    <div class="container">
+        <div data-size="A4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="d-flex align-items-center mb-5">
+                        <h2 class="keep-print-font fw-500 mb-0 text-primary flex-1 position-relative">
+                            {{order?.client}}
+                            <small class="text-muted mb-0 fs-xs">
+                                {{order?.locationArabicName}}
+                            </small>
+                            <!-- barcode demo only -->
+                            <div class="position-absolute pos-top pos-right height-3 mt-1 hidden-md-down">
+                                <ngx-barcode [bc-font-size]="20" [bc-height]="50" [bc-line-color]="'#33485d'"
+                                    [bc-value]="order?.number" [bc-display-value]="false"></ngx-barcode>
+                            </div>
+                        </h2>
+                    </div>
+                    <h3 class="fw-300 display-4 fw-500 color-primary-600 keep-print-font pt-4 l-h-n m-0">
+                        رقم الطلب
+                    </h3>
+                    <div class="text-dark fw-700 h1 mb-g keep-print-font">
+                        # {{order?.number}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="table-responsive">
+                        <table class="table table-clean table-sm align-self-end">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>تاريخ استلام الطلب:</strong>
+                                    </td>
+                                    <td>
+                                        {{order?.created | date: 'dd/MM/yyyy'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        صافي المطلوب:
+                                    </td>
+                                    <td>
+                                        {{order?.cost}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table mt-5">
+                            <thead>
+                                <tr>
+                                    <th class="text-center border-top-0 table-scale-border-bottom fw-700"></th>
+                                    <th class="border-top-0 table-scale-border-bottom fw-700">الاسم</th>
+                                    <th class="border-top-0 table-scale-border-bottom fw-700">الوصف</th>
+                                    <th class="text-right border-top-0 table-scale-border-bottom fw-700">السعر</th>
+                                    <th class="text-center border-top-0 table-scale-border-bottom fw-700">الكمية</th>
+                                    <th class="text-right border-top-0 table-scale-border-bottom fw-700">المجموع</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of results?.clientOrderDetails; let index = index">
+                                    <td class="text-center fw-700">{{index + 1}}</td>
+                                    <td class="text-left strong">{{item.saleItemArabicName}}</td>
+                                    <td class="text-left">{{item.saleItemArabicSpecifications}}</td>
+                                    <td class="text-right">{{ item.saleItemPrice | number : '1.2-2'}}</td>
+                                    <td class="text-center">{{item.saleItemQuantity}}</td>
+                                    <td class="text-right">
+                                        {{(item.saleItemPrice * item.saleItemQuantity) | number :'1.2-2'}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 mr-sm-auto">
+                    <table class="table table-clean">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">
+                                    <strong>المجموع الفرعي</strong>
+                                </td>
+                                <td class="text-right">{{ order?.total | number : '1.2-2'}} </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    <strong>خصم ({{order?.promoCodePercentage}}%)</strong>
+                                </td>
+                                <td class="text-right">{{order?.total * order?.promoCodePercentage | number: '1.2-2'}}
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="text-left">
+                                    <strong>    مبلغ التوصيل</strong>
+                                </td>
+                                <td class="text-right">{{order?.deliveryFee | number: '1.2-2'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left keep-print-font">
+                                    <h4 class="m-0 fw-700 h2 keep-print-font color-primary-700">المبلغ المستحق</h4>
+                                </td>
+                                <td class="text-right keep-print-font">
+                                    <h4 class="m-0 fw-700 h2 keep-print-font text-danger">{{order?.cost |
+                                        number: '1.2-2'}}</h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

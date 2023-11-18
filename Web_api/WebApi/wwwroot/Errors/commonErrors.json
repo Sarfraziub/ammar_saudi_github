@@ -1,0 +1,22 @@
+[
+  {
+	"Id": 1,
+	"Error": "File not found",
+	"ArabicError": "الملف غير موجودة"
+  },
+  {
+	"Id": 2,
+	"Error": "The file size is larger than allowed",
+	"ArabicError": "حجم الملف أكبر من المسموح به"
+  },
+  {
+	"Id": 3,
+	"Error": "The file type is larger than allowed",
+	"ArabicError": "نوع الملف أكبر من المسموح به"
+  },
+  {
+	"Id": 4,
+	"Error": "invalid operation",
+	"ArabicError": "عملية غير صالحة"
+  }
+]

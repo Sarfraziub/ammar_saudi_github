@@ -1,0 +1,26 @@
+<main id="js-page-content" role="main" class="page-content px-0">
+    <div id="panel-package-management" class="panel" [ngClass]="{'panel-fullscreen': isFullScreen}">
+        <div class="panel-hdr">
+            <h2>
+                طلب العميل بـواسطة رابط الإعلان
+            </h2>
+            <div class="panel-toolbar">
+                <button class="btn btn-panel" (click)="isFullScreen = onToggleFullScreen(isFullScreen)"
+                    data-action="panel-fullscreen" placement="bottom"
+                    ngbTooltip="{{'Full Screen'}}"></button>
+            </div>
+        </div>
+
+        <div class="panel-container show">
+            <div class="panel-content">
+                <div class="row no-gutters align-packages-center py-1">
+                    <div class="col mx-2 mb-3">
+                        <promotional-link-order-records-details></promotional-link-order-records-details>
+                        <promotional-link-order-records-table></promotional-link-order-records-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

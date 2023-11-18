@@ -1,0 +1,27 @@
+[
+  {
+	"Id": 1,
+	"Error": "Account Locked",
+	"ArabicError": "الحساب مغلق"
+  },
+  {
+	"Id": 2,
+	"Error": "The account is not exist",
+	"ArabicError": "الحساب غير موجود"
+  },
+  {
+	"Id": 3,
+	"Error": "The account is already locked",
+	"ArabicError": "الحساب مغلق بالفعل"
+  },
+  {
+	"Id": 4,
+	"Error": "The account is already unlocked",
+	"ArabicError": "الحساب مفتوح بالفعل"
+  },
+  {
+	"Id": 5,
+	"Error": "Please update your profile",
+	"ArabicError": "يرجى تحديث ملف التعريف الخاص بك"
+  }
+]

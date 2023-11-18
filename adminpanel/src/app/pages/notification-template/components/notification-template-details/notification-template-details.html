@@ -1,0 +1,51 @@
+<form id="notification-template-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- modal alert -->
+    <div class="modal fade " id="notification-template-edit-view-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تفاصيل الموقع</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="notification-template-title" class="col-lg-3 col-form-label form-label fw-700">
+                            العنوان</label>
+                        <div class="col-lg-9">
+                            <input formControlName="title" [class.is-invalid]="!title.valid && title.touched"
+                                id="notification-template-title" name="notification-template-title" type="text"
+                                class="form-control" placeholder="العنوان" />
+                            <div *ngIf="!title?.valid && title?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="notification-template-body" class="col-lg-3 col-form-label form-label fw-700">
+                            المحتوى</label>
+                        <div class="col-lg-9">
+                            <textarea formControlName="body" [class.is-invalid]="!body.valid && body.touched"
+                                id="notification-template-body" name="notification-template-body" type="text"
+                                class="form-control" placeholder="المحتوى">
+                            </textarea>
+                            <div *ngIf="!body?.valid && body?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" data-content="remove" class="btn btn-default"
+                        data-dismiss="modal">الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

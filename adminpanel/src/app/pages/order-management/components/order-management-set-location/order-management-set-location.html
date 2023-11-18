@@ -1,0 +1,39 @@
+<form id="order-management-set-location-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- modal alert -->
+    <div class="modal fade " id="order-management-set-location-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تعيين موقع</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="order-location-id"
+                            class="col-lg-3 col-form-label form-label fw-700 text-left text-lg-left">
+                            الموقع</label>
+                        <div class="col-lg-9">
+                            <ng-select2 [options]="options" id="order-location-id" dropdownParent="order-location-id"
+                                [class.is-invalid]="!locationId.valid && locationId.touched" placeholder="اختر الموقع"
+                                [data]="locations" formControlName="locationId">
+                            </ng-select2>
+                            <div *ngIf="!locationId?.valid && locationId?.touched" class="invalid-feedback">
+                                هذه الحقل اجباري.
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button #cancelAction type="button" data-content="remove" class="btn btn-default"
+                        data-dismiss="modal">الغاء
+                    </button>
+                    <button type="submit" data-content="remove" class="btn btn-primary" id="row-submit">
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

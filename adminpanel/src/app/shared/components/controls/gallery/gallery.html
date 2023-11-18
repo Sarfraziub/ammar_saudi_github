@@ -1,0 +1,16 @@
+<div class="panel-container position-fixed pos-top pos-left w-100 h-100 gallery-modal" *ngIf="images.length > 0">
+    <div class="panel-content">
+
+        <div class="gallery-toolbar">
+            <button (click)="onToggleClose()" aria-label="Close gallery" class="fal fa-times lg-icon"></button>
+        </div>
+        <div id="js-lightgallery" class="justified-gallery" style="height: 2168.21px;">
+            <a #galleryImages *ngFor="let image of images" class="jg-entry entry-visible" [attr.href]="image.src"
+                [attr.data-sub-html]="image.title">
+                <img class="img-responsive" [src]="image.src" alt="image"
+                    style="width: 274px; height: 184px; margin-left: -137px; margin-top: -92px;">
+                <div class="caption caption-visible">{{image.title}}</div>
+            </a>
+        </div>
+    </div>
+</div>

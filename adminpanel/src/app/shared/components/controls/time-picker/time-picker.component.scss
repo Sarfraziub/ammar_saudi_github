@@ -1,0 +1,12 @@
+.time-picker {
+    .cdk-overlay-container {
+        z-index: 2500;
+    }
+    .owl-dt-container-row {
+        direction: ltr !important;
+    }
+
+    .owl-dt-control-arrow-button {
+        rotate: 180deg !important;
+    }
+}

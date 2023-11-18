@@ -1,0 +1,37 @@
+<data-table id="package-management" [items]="items" [itemCount]="items?.length"
+    [className]="'table-bordered table-hover'" (onRowSelect)="onRowSelect($event)" (onDeleteRow)="onDeleteRow()"
+    (onEditRow)="onEditRow($event)" (onAddRow)="onAddRow()" (onRefreshData)="get()">
+    <column property="name" header="الاسم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="arabicName" header="الاسم بالعربي" [filter]="true" [sortable]="true">
+    </column>
+    <column property="description" header="الوصف" [filter]="true" [sortable]="true">
+    </column>
+    <column property="arabicDescription" header="الوصف بالعربي" [filter]="true" [sortable]="true">
+    </column>
+    <column property="visible" header="الحالة" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+            <div class="row mx-0 text-center">
+                <div class="col">
+                    <i class="fal fal fa-times text-danger" *ngIf="item.visible === false"></i>
+                    <i class="fal fal fa-check text-success" *ngIf="item.visible === true"></i>
+                </div>
+
+            </div>
+        </ng-template>
+    </column>
+</data-table>
+
+
+<a #viewModal href="javascript:void(0);" data-toggle="modal" data-target="#package-management-edit-view-modal"
+    class="d-none">
+</a>
+
+<a #deleteModal href="javascript:void(0);" data-toggle="modal" data-target="#delete-panel-modal" class="d-none">
+</a>
+
+<ng-container *ngIf="selectedItem">
+    <app-delete-modal [selectedItem]="selectedItem" (onConfirm)="onConfirmDelete()"></app-delete-modal>
+</ng-container>
+
+<package-management-details-cmp [selectedItem]="selectedItem" (onSave)="get();"></package-management-details-cmp>

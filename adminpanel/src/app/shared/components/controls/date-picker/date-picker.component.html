@@ -1,0 +1,8 @@
+<div class="input-group flex-nowrap">
+  <input [formControl]="val" [placeholder]="placeholder || 'dd/mm/yyyy'" [owlDateTimeTrigger]="dp" [min]="min"
+    [max]="max" [owlDateTime]="dp" [readonly]="readonly" class="form-control">
+  <div class="input-group-append">
+    <span [owlDateTimeTrigger]="dp" class="input-group-text trigger"><i class="fal fa-calendar fs-xl"></i></span>
+  </div>
+  <owl-date-time #dp [pickerType]="type"></owl-date-time>
+</div>

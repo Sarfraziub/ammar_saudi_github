@@ -1,0 +1,85 @@
+<data-table id="order-management" [items]="items" [itemCount]="items?.length" [className]="'table-bordered table-hover'"
+    [allowDelete]="false" [allowEdit]="false" [allowAdd]="false"  [allowRefresh]="false">
+    <column property="userName" header="اسم المستخدم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="phoneNumber" header="رقم التليفون" [filter]="true" [sortable]="true">
+    </column>
+    <column property="clientName" header="اسم العميل" [filter]="true" [sortable]="true">
+    </column>
+    <column property="createdFormat" header="تاريخ الطلب" [filter]="true" [sortable]="true">
+    </column>
+    <column property="deliveryFormat" header="تاريخ التسليم" [filter]="true" [sortable]="true">
+    </column>
+    <column property="driverName" header="اسم السائق" [filter]="true" [sortable]="true">
+    </column>
+    <column property="total" header="المجموع" [filter]="true" [sortable]="true">
+    </column>
+    <column property="number" header="رقم الأمر" [filter]="true" [sortable]="true">
+    </column>
+    <column property="feedback" header="التعليقات" [filter]="true" [sortable]="true">
+    </column>
+    <column property="rate" header="التقييم" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+            <div class="row mx-0 text-center">
+                <div *ngIf="item.rate" class="col px-1">
+                    <star-rate [value]="item.rate"></star-rate>
+                </div>
+                
+                <div *ngIf="!item.rate" class="col px-1">
+                    <span>لا يوجد تقييم</span>
+                </div>
+            </div>
+        </ng-template>
+    </column>
+    <!-- <column property="hideFeedback" header="حالة التعليق" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a *ngIf="item.hideFeedback  === true" (click)="onToggleLock(item, false)" href="javascript:void(0);"
+                    title="مخفي" class="btn btn-danger btn-sm btn-icon waves-effect mx-1">
+                    <i class="fal fa-eye-slash"></i>
+                </a>
+                <a *ngIf="!item.hideFeedback" (click)="onToggleLock(item, true)"
+                    href="javascript:void(0);" title="ظاهر" class="btn btn-primary btn-sm btn-icon waves-effect mx-1">
+                    <i class="fal fa-eye"></i>
+                </a>
+            </div>
+        </ng-template>
+    </column> -->
+    <column [property]="'active'" [header]="'Controls'">
+        <ng-template #dataTableHeader let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" (click)="get()"
+                    class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mx-1">
+                    <i class="fal fa-redo"></i>
+                </a>
+            </div>
+        </ng-template>
+        <ng-template #dataTableCell let-item="item">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="javascript:void(0);" triggers="manual" #actionPopover="ngbPopover"
+                    (click)="actionPopover.open()" [ngbPopover]="actionContent" [popoverTitle]="actionTitle"
+                    class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mx-1">
+                    <i class="fal fa-align-center"></i>
+                </a>
+                <ng-template #actionTitle>
+                    <div class="row border-bottom">
+                        <div class="col">
+                            <div class="d-flex justify-content-center align-items-center pb-2">
+                                <h5 class="fw-500 width-sm m-0"> <i class="fal fa-exclamation-square mr-2"></i>
+                                    {{item.orderId}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template #actionContent>
+                    <ul class="list-group border p-0">
+                        <li class="list-group-item list-group-item-action c-pointer py-2" (click)="onViewDetails(item)">
+                            <span>تفاصيل الطلب</span>
+                        </li>
+                    </ul>
+                </ng-template>
+            </div>
+        </ng-template>
+    </column>
+</data-table>

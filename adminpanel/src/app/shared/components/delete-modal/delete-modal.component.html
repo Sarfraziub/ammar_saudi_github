@@ -1,0 +1,24 @@
+<!-- modal alert -->
+<div class="modal modal-alert fade" id="delete-panel-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fal fa-exclamation-triangle text-warning mr-2"></i>
+                    {{deleteTitle}} <span class="mx-1 fw-500">{{selectedItem?.name}}</span>
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="bootbox-body"><span>
+                        <strong> تنبيه:</strong>
+                        هذا الإجراء لا يمكن التراجع عنه!
+                    </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="onToggleConfirm()" type="button"
+                    class="btn btn-warning shadow-0 bootbox-accept">تأكيد</button>
+                <button data-dismiss="modal" type="button" class="btn btn-success bootbox-cancel">الغاء</button>
+            </div>
+        </div>
+    </div>
+</div>

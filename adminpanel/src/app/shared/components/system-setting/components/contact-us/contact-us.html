@@ -1,0 +1,103 @@
+<form id="contact-us-group" [formGroup]="contactUsForm">
+
+    <div class="form-group row">
+        <div class="col">
+            <div class="form-group mb-0">
+                <label class="form-label fw-700" for="contact-us-phone">رقم الجوال</label>
+                <input formControlName="phone" [class.is-invalid]="!phone.valid && phone.touched" id="contact-us-phone"
+                    name="contact-us-phone" type="text" class="form-control" placeholder="رقم الجوال" />
+                <div *ngIf="!phone?.valid && phone?.touched" class="invalid-feedback">
+                    هذه الحقل اجباري.
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group mb-0">
+                <label class="form-label fw-700" for="contact-us-email">البريد الالكتروني</label>
+                <input formControlName="email" [class.is-invalid]="!email.valid && email.touched" id="contact-us-email"
+                    name="contact-us-email" type="email" class="form-control" placeholder="البريد الالكتروني" />
+                <div *ngIf="!email?.valid && email?.touched" class="invalid-feedback">
+                    هذه الحقل اجباري.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="contact-us-address" class="col-lg-2 col-form-label form-label fw-700 text-left text-lg-left">
+            العنوان</label>
+        <div class="col-lg-10">
+            <textarea formControlName="address" [class.is-invalid]="!address.valid && address.touched"
+                id="contact-us-address" name="contact-us-address" class="form-control" placeholder="العنوان"></textarea>
+            <div *ngIf="!address?.valid && address?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="form-group row direction-left">
+        <label for="contact-us-whatsApp" class="col-lg-2 col-form-label form-label fw-700 text-right text-lg-right">
+            Whats App</label>
+        <div class="col-lg-10">
+            <input formControlName="whatsApp" [class.is-invalid]="!whatsApp.valid && whatsApp.touched"
+                id="contact-us-whatsApp" name="contact-us-whatsApp" class="form-control text-right" placeholder="Whats App" />
+            <div *ngIf="!whatsApp?.valid && whatsApp?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    
+    <div class="form-group row direction-left">
+        <label for="contact-us-facebook" class="col-lg-2 col-form-label form-label fw-700 text-right text-lg-right">
+            Facebook</label>
+        <div class="col-lg-10">
+            <input formControlName="facebook" [class.is-invalid]="!facebook.valid && facebook.touched"
+                id="contact-us-facebook" name="contact-us-facebook" class="form-control text-right" placeholder="Facebook" />
+            <div *ngIf="!facebook?.valid && facebook?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="form-group row direction-left">
+        <label for="contact-us-instagram" class="col-lg-2 col-form-label form-label fw-700 text-right text-lg-right">
+            Instagram</label>
+        <div class="col-lg-10">
+        <input formControlName="instagram" [class.is-invalid]="!instagram.valid && instagram.touched"
+                id="contact-us-instagram" name="contact-us-instagram" class="form-control text-right" placeholder="Instagram" />
+            <div *ngIf="!instagram?.valid && instagram?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    
+    <div class="form-group row direction-left">
+        <label for="contact-us-twitter" class="col-lg-2 col-form-label form-label fw-700 text-right text-lg-right">
+            Twitter</label>
+        <div class="col-lg-10">
+        <input formControlName="twitter" [class.is-invalid]="!twitter.valid && twitter.touched"
+                id="contact-us-twitter" name="contact-us-twitter" class="form-control text-right" placeholder="Twitter" />
+            <div *ngIf="!twitter?.valid && twitter?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    
+    <div class="form-group row direction-left">
+        <label for="contact-us-snapchat" class="col-lg-2 col-form-label form-label fw-700 text-right text-lg-right">
+            Snapchat</label>
+        <div class="col-lg-10">
+        <input formControlName="snapchat" [class.is-invalid]="!snapchat.valid && snapchat.touched"
+                id="contact-us-snapchat" name="contact-us-snapchat" class="form-control text-right" placeholder="Snapchat" />
+            <div *ngIf="!snapchat?.valid && snapchat?.touched" class="invalid-feedback">
+                هذه الحقل اجباري.
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</form>
